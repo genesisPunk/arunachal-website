@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+@layer base {
+  :root {
+    --background: 248 250 252;
+    --foreground: 15 23 42;
+
+    --card: 255 255 255;
+    --card-foreground: 15 23 42;
+
+    --popover: 255 255 255;
+    --popover-foreground: 15 23 42;
+
+    --primary: 30 58 138;
+    --primary-foreground: 248 250 252;
+
+    --secondary: 241 245 249;
+    --secondary-foreground: 51 65 85;
+
+    --muted: 241 245 249;
+    --muted-foreground: 100 116 139;
+
+    --accent: 241 245 249;
+    --accent-foreground: 15 23 42;
+
+    --destructive: 239 68 68;
+    --destructive-foreground: 248 250 252;
+
+    --border: 226 232 240;
+    --input: 226 232 240;
+    --ring: 30 58 138;
+
+    --radius: 0.375rem;
+
+    /* Government theme colors */
+    --gov-blue: 30 58 138;
+    --gov-blue-light: 59 130 246;
+    --gov-blue-dark: 29 78 216;
+    --gov-orange: 244 63 94;
+    --gov-green: 34 197 94;
+    --gov-red: 239 68 68;
+    --gov-gray: 71 85 105;
+    --gov-gray-light: 148 163 184;
+  }
+
+  .dark {
+    --background: 2 6 23;
+    --foreground: 248 250 252;
+
+    --card: 2 6 23;
+    --card-foreground: 248 250 252;
+
+    --popover: 2 6 23;
+    --popover-foreground: 248 250 252;
+
+    --primary: 248 250 252;
+    --primary-foreground: 2 6 23;
+
+    --secondary: 30 41 59;
+    --secondary-foreground: 248 250 252;
+
+    --muted: 30 41 59;
+    --muted-foreground: 148 163 184;
+
+    --accent: 30 41 59;
+    --accent-foreground: 248 250 252;
+
+    --destructive: 127 29 29;
+    --destructive-foreground: 248 250 252;
+
+    --border: 30 41 59;
+    --input: 30 41 59;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family:
+      "Inter",
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      "Roboto",
+      sans-serif;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold;
+  }
+}
+
+@layer components {
+  .gov-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--gov-blue)) 0%,
+      hsl(var(--gov-blue-light)) 100%
+    );
+  }
+
+  .gov-card {
+    @apply bg-white border border-slate-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200;
+  }
+
+  .gov-button-primary {
+    @apply bg-blue-800 hover:bg-blue-900 text-white font-medium px-6 py-2.5 rounded-md transition-colors duration-200;
+  }
+
+  .gov-button-secondary {
+    @apply bg-white border border-blue-800 text-blue-800 hover:bg-blue-50 font-medium px-6 py-2.5 rounded-md transition-colors duration-200;
+  }
+
+  .gov-text-primary {
+    @apply text-slate-800;
+  }
+
+  .gov-text-secondary {
+    @apply text-slate-600;
+  }
+
+  .gov-text-muted {
+    @apply text-slate-500;
+  }
+}
