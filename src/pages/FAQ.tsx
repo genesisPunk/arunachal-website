@@ -206,38 +206,6 @@ const FAQ = () => {
         </div>
       </div>
 
-      {/* FAQ Categories Overview */}
-      <section className="py-12 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {Object.entries(categoryIcons).map(
-              ([category, IconComponent], index) => (
-                <motion.div
-                  key={category}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 text-center"
-                >
-                  <div
-                    className={`w-16 h-16 ${categoryColors[category as keyof typeof categoryColors]} rounded-full flex items-center justify-center mx-auto mb-4`}
-                  >
-                    <IconComponent className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-[#000080] capitalize mb-2">
-                    {category === "general" ? "General Info" : category}
-                  </h3>
-                  <p className="text-sm text-gray-600">
-                    {faqs.filter((faq) => faq.category === category).length}{" "}
-                    questions
-                  </p>
-                </motion.div>
-              ),
-            )}
-          </div>
-        </div>
-      </section>
-
       {/* FAQ Accordion */}
       <section className="py-16">
         <div className="container mx-auto px-4">
@@ -261,25 +229,15 @@ const FAQ = () => {
                     >
                       <AccordionTrigger className="hover:no-underline py-6">
                         <div className="flex items-center gap-4 text-left">
-                          <div
-                            className={`w-10 h-10 ${categoryColors[faq.category]} rounded-full flex items-center justify-center flex-shrink-0`}
-                          >
-                            {getCategoryIcon(faq.category)}
-                          </div>
                           <div className="flex-1">
                             <h3 className="text-lg font-semibold text-[#000080] group-hover:text-orange-600 transition-colors duration-300">
                               {faq.question}
                             </h3>
-                            <span className="text-sm text-gray-500 capitalize">
-                              {faq.category === "general"
-                                ? "General"
-                                : faq.category}
-                            </span>
                           </div>
                         </div>
                       </AccordionTrigger>
                       <AccordionContent className="pb-6">
-                        <div className="ml-14">
+                        <div className="ml-4">
                           <p className="text-gray-700 leading-relaxed">
                             {faq.answer}
                           </p>

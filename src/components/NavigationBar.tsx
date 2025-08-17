@@ -38,11 +38,11 @@ const NavigationBar = ({ className = "" }: NavigationBarProps) => {
                 />
               </div>
               <div className="ml-3 flex items-center">
-                <img src="/bird-1.png" alt="Bird 1" className="h-6 w-6 mr-2" />
-                <span className="text-lg font-semibold text-slate-800">
+                <img src="/bird-1.png" alt="Bird 1" className="h-8 w-8 mr-2" />
+                <span className="text-base md:text-lg font-semibold text-slate-800">
                   AP Youth Parliament
                 </span>
-                <img src="/bird-2.png" alt="Bird 2" className="h-6 w-6 ml-2" />
+                <img src="/bird-2.png" alt="Bird 2" className="h-8 w-8 ml-2" />
               </div>
             </Link>
           </div>
@@ -55,7 +55,7 @@ const NavigationBar = ({ className = "" }: NavigationBarProps) => {
                   <Link
                     key={link.name}
                     to={link.path}
-                    className="px-4 py-2 text-sm font-medium text-slate-700 hover:text-blue-800 hover:bg-blue-50 rounded-md transition-colors duration-200"
+                    className="px-3 md:px-4 py-2 text-xs md:text-sm font-medium text-slate-700 hover:text-blue-800 hover:bg-blue-50 rounded-md transition-colors duration-200"
                   >
                     {link.name}
                   </Link>
@@ -73,20 +73,32 @@ const NavigationBar = ({ className = "" }: NavigationBarProps) => {
                   <span className="sr-only">Toggle menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-                <nav className="flex flex-col gap-2 mt-8">
+              <SheetContent
+                side="right"
+                className="w-[300px] sm:w-[400px] bg-white/30 backdrop-blur-xl border-0 shadow-2xl"
+              >
+                <nav className="flex flex-col gap-3 mt-8">
                   {navLinks.map((link, index) => {
                     return (
                       <Link
                         key={link.name}
                         to={link.path}
-                        className="px-4 py-3 text-sm font-medium text-slate-700 hover:text-blue-800 hover:bg-blue-50 rounded-md transition-colors duration-200"
+                        className="px-4 py-3 text-sm font-bold text-slate-900 hover:text-blue-800 hover:bg-white/40 rounded-xl transition-all duration-300 backdrop-blur-sm border border-white/30 hover:border-white/50 shadow-lg bg-white/20"
                         onClick={() => setIsOpen(false)}
                       >
                         {link.name}
                       </Link>
                     );
                   })}
+
+                  {/* Add the provided image at the bottom */}
+                  <div className="mt-8 flex justify-center">
+                    <img
+                      src="/mobile-nav-image-new.png"
+                      alt="Arunachal Pradesh Cultural Image"
+                      className="w-56 h-56 object-contain brightness-110 contrast-110"
+                    />
+                  </div>
                 </nav>
               </SheetContent>
             </Sheet>

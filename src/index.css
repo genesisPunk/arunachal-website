@@ -174,4 +174,93 @@
   .gov-text-muted {
     @apply text-slate-500;
   }
+
+  /* Modern Gallery Styles */
+  .perspective-1000 {
+    perspective: 1000px;
+    perspective-origin: center center;
+  }
+
+  /* Gallery animations */
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .gallery-slide-enter {
+    animation: slideIn 0.6s ease-out;
+  }
+
+  /* Smooth transitions for gallery elements */
+  .gallery-transition {
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  /* Enhanced shadow effects */
+  .gallery-shadow {
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.15),
+      0 10px 20px rgba(0, 0, 0, 0.1),
+      0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+
+  .gallery-shadow-hover {
+    box-shadow:
+      0 30px 60px rgba(0, 0, 0, 0.25),
+      0 15px 30px rgba(0, 0, 0, 0.15),
+      0 0 0 1px rgba(255, 255, 255, 0.2);
+  }
+
+  /* Advanced Moments Section Styles */
+  .moments-3d {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  .moments-card {
+    transform-style: preserve-3d;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .moments-card:hover {
+    transform: translateZ(20px) rotateY(5deg) rotateX(5deg);
+  }
+
+  /* Floating animation for particles */
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(180deg);
+    }
+  }
+
+  .float-animation {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Advanced gradient borders */
+  .gradient-border {
+    position: relative;
+    background: linear-gradient(45deg, #ff9933, #ffffff, #138808);
+    padding: 2px;
+    border-radius: 16px;
+  }
+
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    background: white;
+    border-radius: 14px;
+    z-index: -1;
+  }
 }

@@ -115,10 +115,10 @@ const Home = () => {
               transition={{ duration: 0.8 }}
             >
               <div className="flex items-center justify-center gap-2 md:gap-8 mb-4 relative">
-                {/* Left side images */}
+                {/* Left side image - Mobile: larger size, Desktop: same */}
                 <div className="flex flex-col gap-1 md:gap-4">
                   <motion.div
-                    className="w-16 h-16 md:w-32 md:h-32"
+                    className="w-24 h-24 md:w-32 md:h-32"
                     initial={{ opacity: 0, scale: 0, x: 50, y: 50 }}
                     animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
                     transition={{
@@ -130,13 +130,18 @@ const Home = () => {
                     }}
                   >
                     <img
-                      src="/cultural-image-1.png"
+                      src="/cultural-image-mobile-1.png"
                       alt="Cultural Image 1"
-                      className="w-full h-full object-contain"
+                      className="w-full h-full object-contain md:hidden"
+                    />
+                    <img
+                      src="/cultural-image-desktop-1.png"
+                      alt="Cultural Image 1"
+                      className="w-full h-full object-contain hidden md:block"
                     />
                   </motion.div>
                   <motion.div
-                    className="w-16 h-16 md:w-32 md:h-32"
+                    className="hidden md:block w-16 h-16 md:w-32 md:h-32"
                     initial={{ opacity: 0, scale: 0, x: 50, y: -50 }}
                     animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
                     transition={{
@@ -148,7 +153,7 @@ const Home = () => {
                     }}
                   >
                     <img
-                      src="/cultural-image-2.png"
+                      src="/cultural-image-desktop-2.png"
                       alt="Cultural Image 2"
                       className="w-full h-full object-contain"
                     />
@@ -169,10 +174,10 @@ const Home = () => {
                   />
                 </motion.div>
 
-                {/* Right side images */}
+                {/* Right side image - Mobile: larger size, Desktop: same */}
                 <div className="flex flex-col gap-1 md:gap-4">
                   <motion.div
-                    className="w-16 h-16 md:w-32 md:h-32"
+                    className="w-24 h-24 md:w-32 md:h-32"
                     initial={{ opacity: 0, scale: 0, x: -50, y: 50 }}
                     animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
                     transition={{
@@ -184,13 +189,18 @@ const Home = () => {
                     }}
                   >
                     <img
-                      src="/cultural-image-3.png"
+                      src="/cultural-image-mobile-2.png"
                       alt="Cultural Image 3"
-                      className="w-full h-full object-contain"
+                      className="w-full h-full object-contain md:hidden"
+                    />
+                    <img
+                      src="/cultural-image-desktop-3.png"
+                      alt="Cultural Image 3"
+                      className="w-full h-full object-contain hidden md:block"
                     />
                   </motion.div>
                   <motion.div
-                    className="w-16 h-16 md:w-32 md:h-32"
+                    className="hidden md:block w-16 h-16 md:w-32 md:h-32"
                     initial={{ opacity: 0, scale: 0, x: -50, y: -50 }}
                     animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
                     transition={{
@@ -202,8 +212,8 @@ const Home = () => {
                     }}
                   >
                     <img
-                      src="/cultural-image-1.png"
-                      alt="Cultural Image 1"
+                      src="/cultural-image-desktop-4.png"
+                      alt="Cultural Image 4"
                       className="w-full h-full object-contain"
                     />
                   </motion.div>
@@ -212,7 +222,7 @@ const Home = () => {
             </motion.div>
 
             <motion.p
-              className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto mb-8 leading-relaxed font-bold"
+              className="text-sm md:text-lg lg:text-xl text-slate-600 max-w-3xl mx-auto mb-6 md:mb-8 leading-relaxed font-bold px-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -223,22 +233,48 @@ const Home = () => {
             </motion.p>
 
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 justify-center px-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               <a
                 href="#announcements"
-                className="gov-button-primary inline-flex items-center justify-center"
+                className="inline-flex items-center justify-center text-xs sm:text-sm md:text-base py-2 sm:py-2.5 md:py-3 px-3 sm:px-4 md:px-6 bg-gradient-to-r from-orange-500 to-green-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border-2 border-white/20 hover:border-white/40"
               >
-                Explore Initiatives
+                <span>Explore Initiatives</span>
+                <svg
+                  className="w-3 h-3 sm:w-4 sm:h-4 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
+                </svg>
               </a>
               <a
                 href="/about-us"
-                className="gov-button-secondary inline-flex items-center justify-center"
+                className="inline-flex items-center justify-center text-xs sm:text-sm md:text-base py-2 sm:py-2.5 md:py-3 px-3 sm:px-4 md:px-6 bg-white/90 backdrop-blur-sm text-[#000080] font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border-2 border-[#000080]/20 hover:border-[#000080]/40 hover:bg-white"
               >
-                Learn More
+                <span>Learn More</span>
+                <svg
+                  className="w-3 h-3 sm:w-4 sm:h-4 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                  />
+                </svg>
               </a>
             </motion.div>
           </div>
@@ -255,13 +291,13 @@ const Home = () => {
       {/* Youth Parliament Events Section */}
       <section className="py-16 bg-slate-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-800 mb-4">
+          <div className="text-center mb-8 md:mb-12 px-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-800 mb-4">
               Youth Parliament Events
             </h2>
             <div className="w-24 h-1 bg-green-600 mx-auto mb-4"></div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto px-2 sm:px-0">
             {[
               {
                 title: "District-Level Youth Parliaments",
@@ -296,20 +332,20 @@ const Home = () => {
             ].map((initiative, index) => (
               <motion.div
                 key={index}
-                className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col"
+                className="bg-white p-4 sm:p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <h3 className="text-lg font-semibold text-slate-800 mb-3">
+                <h3 className="text-sm sm:text-base md:text-lg font-semibold text-slate-800 mb-2 sm:mb-3">
                   {initiative.title}
                 </h3>
-                <p className="text-slate-600 text-sm mb-4 flex-grow">
+                <p className="text-slate-600 text-xs sm:text-sm mb-3 sm:mb-4 flex-grow leading-relaxed">
                   {initiative.description}
                 </p>
                 <Dialog>
                   <DialogTrigger asChild>
-                    <button className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition-colors text-sm font-medium mt-auto">
+                    <button className="w-full bg-green-600 text-white py-2 px-3 sm:px-4 rounded-md hover:bg-green-700 transition-colors text-xs sm:text-sm font-medium mt-auto">
                       Register Now
                     </button>
                   </DialogTrigger>
@@ -355,6 +391,116 @@ const Home = () => {
       {/* Previous Speakers & Dignitaries Section */}
       <section className="py-16 bg-gradient-to-br from-slate-100 to-blue-50">
         <SpeakersCarousel />
+      </section>
+
+      {/* Moments Section */}
+      <section className="py-20 bg-gradient-to-br from-white via-orange-50 to-green-50 relative overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="max-w-7xl mx-auto">
+            {/* Header */}
+            <motion.div
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-[#000080] mb-6">
+                AYP 2.0 Highlights
+              </h2>
+              <div className="w-32 h-1 bg-gradient-to-r from-orange-500 via-white to-green-500 mx-auto mb-6 rounded-full" />
+            </motion.div>
+
+            {/* Photo Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mb-12">
+              {[
+                "/event-new-1.jpg",
+                "/event-new-2.jpg",
+                "/event-new-3.jpg",
+                "/event-2.jpg",
+              ].map((photo, index) => (
+                <motion.div
+                  key={index}
+                  className="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-700 cursor-pointer"
+                  initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.8, delay: index * 0.2 }}
+                  whileHover={{ y: -10, scale: 1.02 }}
+                  onClick={() => (window.location.href = "/gallery")}
+                >
+                  {/* Background Gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-orange-400/20 via-transparent to-green-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
+
+                  {/* Image Container */}
+                  <div className="relative aspect-[4/5] overflow-hidden">
+                    <img
+                      src={photo}
+                      alt={`Moment ${index + 1}`}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                    {/* Shine Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+                  </div>
+
+                  {/* Decorative Elements */}
+                  <div className="absolute top-4 right-4 w-3 h-3 bg-orange-400 rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute bottom-4 left-4 w-2 h-2 bg-green-400 rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
+                </motion.div>
+              ))}
+            </div>
+
+            {/* View All Photos Button */}
+            <motion.div
+              className="text-center"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+            >
+              <motion.button
+                onClick={() => (window.location.href = "/gallery")}
+                className="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-orange-500 via-orange-600 to-green-600 text-white font-bold text-lg rounded-full shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {/* Background Animation */}
+                <div className="absolute inset-0 bg-gradient-to-r from-green-600 via-orange-600 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                {/* Content */}
+                <span className="relative z-10 mr-3">View All Photos</span>
+                <motion.svg
+                  className="relative z-10 w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
+                </motion.svg>
+
+                {/* Shine Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+              </motion.button>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Background Decorations */}
+        <div className="absolute top-10 left-10 w-20 h-20 bg-orange-200/30 rounded-full blur-xl" />
+        <div className="absolute bottom-10 right-10 w-32 h-32 bg-green-200/30 rounded-full blur-xl" />
+        <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-blue-200/20 rounded-full blur-lg" />
       </section>
 
       {/* Partners Section */}
@@ -581,11 +727,11 @@ const Home = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-5xl font-bold text-white mb-6">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6 px-4">
                 Stay Connected
               </h2>
-              <div className="w-32 h-1 bg-white mx-auto mb-6 rounded-full shadow-md" />
-              <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
+              <div className="w-24 md:w-32 h-1 bg-white mx-auto mb-4 md:mb-6 rounded-full shadow-md" />
+              <p className="text-base md:text-lg lg:text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed px-4">
                 Follow our journey and stay updated with the latest news,
                 events, and initiatives
               </p>
@@ -647,7 +793,7 @@ const Home = () => {
 
               {/* Second Column - Facebook Embed (Overlapping) */}
               <motion.div
-                className="lg:w-1/3 w-full lg:-ml-20 mt-8 lg:mt-0 relative z-10"
+                className="lg:w-2/3 w-full lg:-ml-20 mt-8 lg:mt-0 relative z-10"
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
@@ -680,9 +826,9 @@ const Home = () => {
                   {/* Content */}
                   <div className="mb-3">
                     <iframe
-                      src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D100089994003445&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+                      src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D100089994003445&tabs=timeline&width=500&height=600&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
                       width="100%"
-                      height="500"
+                      height="600"
                       style={{ border: "none", overflow: "hidden" }}
                       scrolling="no"
                       frameBorder="0"
@@ -729,10 +875,10 @@ const Home = () => {
       {/* Call to Action Section */}
       <section className="py-16 bg-gradient-to-br from-blue-800 to-blue-900">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-white mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 md:mb-6 px-4">
             Join the Movement
           </h2>
-          <p className="text-lg text-blue-100 max-w-2xl mx-auto mb-8">
+          <p className="text-sm md:text-base lg:text-lg text-blue-100 max-w-2xl mx-auto mb-6 md:mb-8 px-4 leading-relaxed">
             Be part of the change you want to see. Join the Arunachal Pradesh
             Youth Parliament and make your voice heard in shaping our state's
             future.

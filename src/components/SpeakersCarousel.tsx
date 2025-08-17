@@ -126,7 +126,7 @@ const SpeakerCard = ({
 
           {/* Image Container */}
           <div className="relative p-6 pb-4">
-            <div className="relative mx-auto w-32 h-32 mb-4">
+            <div className="relative mx-auto w-40 h-40 mb-4">
               <motion.div
                 animate={{
                   scale: isHovered ? 1.1 : 1,
@@ -271,7 +271,7 @@ const SpeakersCarousel = () => {
             {speakersData.map((speaker, index) => (
               <CarouselItem
                 key={speaker.id}
-                className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+                className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3"
               >
                 <SpeakerCard speaker={speaker} index={index} />
               </CarouselItem>

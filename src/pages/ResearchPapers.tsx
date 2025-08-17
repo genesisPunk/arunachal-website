@@ -261,9 +261,9 @@ const ResearchPapers = () => {
       </section>
 
       {/* Category Filter */}
-      <section className="py-8 bg-gray-50">
+      <section className="py-12 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
         <div className="container mx-auto px-4">
-          <div className="flex flex-wrap justify-center gap-2">
+          <div className="flex flex-wrap justify-center gap-3">
             {categories.map((category) => (
               <Button
                 key={category.id}
@@ -271,10 +271,10 @@ const ResearchPapers = () => {
                   selectedCategory === category.id ? "default" : "outline"
                 }
                 onClick={() => setSelectedCategory(category.id)}
-                className={`${
+                className={`px-6 py-3 font-semibold text-sm transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 ${
                   selectedCategory === category.id
-                    ? "bg-orange-500 hover:bg-orange-600 text-white"
-                    : "border-orange-500 text-orange-500 hover:bg-orange-50"
+                    ? "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white border-0 shadow-blue-200"
+                    : "bg-white border-2 border-slate-300 text-slate-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:border-blue-400 hover:text-blue-700"
                 }`}
               >
                 {category.name}

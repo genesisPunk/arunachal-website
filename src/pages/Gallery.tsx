@@ -37,9 +37,11 @@ const Gallery = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // General event photos (10 photos)
+  // General event photos (12 photos)
   const generalPhotos = [
-    "/event-1.png",
+    "/event-new-1.jpg",
+    "/event-new-2.jpg",
+    "/event-new-3.jpg",
     "/event-2.jpg",
     "/event-3.jpg",
     "/event-4.jpg",
@@ -157,9 +159,9 @@ const Gallery = () => {
         id="awards-section"
         className="py-20 bg-gradient-to-br from-yellow-50 to-orange-50 relative overflow-hidden min-h-screen"
       >
-        {/* Fixed Trophy Image with Sparkling Effect */}
+        {/* Fixed Trophy Image with Enhanced Sparkling Effect */}
         <motion.div
-          className="fixed left-8 top-1/2 transform -translate-y-1/2 z-10 hidden lg:block"
+          className="fixed left-8 top-1/3 transform -translate-y-1/3 z-10 hidden lg:block"
           initial={{ opacity: 0, x: -100, scale: 0.8 }}
           animate={{
             opacity: showTrophy ? 1 : 0,
@@ -171,29 +173,29 @@ const Gallery = () => {
           <div className="relative">
             {/* Enhanced Sparkling particles around trophy */}
             <div className="absolute inset-0 pointer-events-none">
-              {[...Array(16)].map((_, i) => (
+              {[...Array(24)].map((_, i) => (
                 <motion.div
                   key={i}
                   className="absolute"
                   style={{
-                    left: `${10 + (i % 4) * 20}%`,
-                    top: `${10 + Math.floor(i / 4) * 20}%`,
+                    left: `${5 + (i % 6) * 15}%`,
+                    top: `${5 + Math.floor(i / 6) * 15}%`,
                   }}
                   animate={{
-                    scale: [0, 1.2, 0],
+                    scale: [0, 1.5, 0],
                     rotate: [0, 180, 360],
                     opacity: [0, 1, 0],
-                    x: [0, Math.sin(i) * 10, 0],
-                    y: [0, Math.cos(i) * 10, 0],
+                    x: [0, Math.sin(i * 0.5) * 15, 0],
+                    y: [0, Math.cos(i * 0.5) * 15, 0],
                   }}
                   transition={{
-                    duration: 2.5,
+                    duration: 3,
                     repeat: Infinity,
-                    delay: i * 0.15,
+                    delay: i * 0.1,
                     ease: "easeInOut",
                   }}
                 >
-                  <Sparkles className="w-5 h-5 text-yellow-400 drop-shadow-lg" />
+                  <Sparkles className="w-6 h-6 text-yellow-400 drop-shadow-lg" />
                 </motion.div>
               ))}
             </div>
@@ -203,13 +205,13 @@ const Gallery = () => {
               className="absolute inset-0 rounded-full"
               animate={{
                 boxShadow: [
-                  "0 0 30px rgba(255, 215, 0, 0.4), 0 0 60px rgba(255, 215, 0, 0.2)",
-                  "0 0 50px rgba(255, 215, 0, 0.7), 0 0 100px rgba(255, 215, 0, 0.4)",
-                  "0 0 30px rgba(255, 215, 0, 0.4), 0 0 60px rgba(255, 215, 0, 0.2)",
+                  "0 0 40px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.3), 0 0 120px rgba(255, 215, 0, 0.1)",
+                  "0 0 60px rgba(255, 215, 0, 0.8), 0 0 120px rgba(255, 215, 0, 0.5), 0 0 180px rgba(255, 215, 0, 0.2)",
+                  "0 0 40px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.3), 0 0 120px rgba(255, 215, 0, 0.1)",
                 ],
               }}
               transition={{
-                duration: 3,
+                duration: 2.5,
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
@@ -218,13 +220,15 @@ const Gallery = () => {
             <motion.img
               src="/trophy.png"
               alt="Trophy"
-              className="w-72 h-auto object-contain drop-shadow-2xl relative z-10"
+              className="w-80 h-auto object-contain drop-shadow-2xl relative z-10"
               style={{
-                filter: "drop-shadow(0 25px 50px rgba(255, 215, 0, 0.5))",
+                filter:
+                  "drop-shadow(0 30px 60px rgba(255, 215, 0, 0.6)) brightness(1.1)",
               }}
               animate={{
-                y: [0, -10, 0],
-                rotate: [0, 2, -2, 0],
+                y: [0, -15, 0],
+                rotate: [0, 3, -3, 0],
+                scale: [1, 1.05, 1],
               }}
               transition={{
                 duration: 4,
@@ -235,33 +239,48 @@ const Gallery = () => {
 
             {/* Multiple rotating golden rings */}
             <motion.div
-              className="absolute inset-0 border-4 border-yellow-400/30 rounded-full"
+              className="absolute inset-0 border-4 border-yellow-400/40 rounded-full"
               animate={{ rotate: 360 }}
               transition={{
-                duration: 8,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-              style={{
-                width: "300px",
-                height: "300px",
-                left: "-14px",
-                top: "-14px",
-              }}
-            />
-            <motion.div
-              className="absolute inset-0 border-2 border-yellow-300/20 rounded-full"
-              animate={{ rotate: -360 }}
-              transition={{
-                duration: 12,
+                duration: 6,
                 repeat: Infinity,
                 ease: "linear",
               }}
               style={{
                 width: "320px",
                 height: "320px",
-                left: "-24px",
-                top: "-24px",
+                left: "-20px",
+                top: "-20px",
+              }}
+            />
+            <motion.div
+              className="absolute inset-0 border-3 border-yellow-300/30 rounded-full"
+              animate={{ rotate: -360 }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              style={{
+                width: "350px",
+                height: "350px",
+                left: "-35px",
+                top: "-35px",
+              }}
+            />
+            <motion.div
+              className="absolute inset-0 border-2 border-yellow-200/20 rounded-full"
+              animate={{ rotate: 360 }}
+              transition={{
+                duration: 10,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              style={{
+                width: "380px",
+                height: "380px",
+                left: "-50px",
+                top: "-50px",
               }}
             />
           </div>
@@ -328,59 +347,70 @@ const Gallery = () => {
       {/* Media Coverage Section */}
       <section
         id="media-section"
-        className="py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white relative overflow-hidden"
+        className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50 relative overflow-hidden"
       >
         <div className="container mx-auto px-4">
-          {/* Section Header */}
-          <motion.div
-            className="text-center mb-16 relative"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="relative inline-block">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                Media Coverage
-              </h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-blue-600 mx-auto rounded-full" />
+          <div className="max-w-6xl mx-auto">
+            {/* Section Header */}
+            <motion.div
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="relative inline-block">
+                <h2 className="text-4xl md:text-5xl font-bold text-[#000080] mb-4">
+                  Media Coverage
+                </h2>
+                <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-indigo-600 mx-auto rounded-full" />
+                <Newspaper className="absolute -top-2 -right-12 w-8 h-8 text-blue-500 opacity-60" />
+              </div>
+              <p className="text-lg text-gray-700 max-w-3xl mx-auto mt-6">
+                Featured coverage of our initiatives and events in leading
+                publications
+              </p>
+            </motion.div>
 
-              {/* News Article Link */}
-              <motion.a
-                href="https://arunachaltimes.in/index.php/2025/04/04/arunachal-youth-parliament-2-0-begins/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center mt-6 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Newspaper className="w-5 h-5 mr-2" />
-                Read Latest News Article
-              </motion.a>
-            </div>
-          </motion.div>
-
-          {/* Media Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {mediaCoveragePhotos.map((photo, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.3 }}
-                className="group relative cursor-pointer"
-                onClick={() => setSelectedImage(photo)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <div className="relative overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-3">
-                  <div className="aspect-[4/3] overflow-hidden">
+            {/* Media Articles Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {[
+                {
+                  image: "/event-1.png",
+                  publication: "Event Coverage",
+                },
+                {
+                  image: "/media-coverage-1.jpg",
+                  publication: "The Arunachal Times",
+                },
+                {
+                  image: "/media-coverage-2.jpg",
+                  publication: "Arunachal Front",
+                },
+                {
+                  image: "/media-coverage-3.jpg",
+                  publication: "Arunachal Front",
+                },
+              ].map((article, index) => (
+                <motion.div
+                  key={index}
+                  className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden cursor-pointer"
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.2 }}
+                  whileHover={{ y: -10 }}
+                  onClick={() => setSelectedImage(article.image)}
+                >
+                  {/* Article Image */}
+                  <div className="relative h-64 overflow-hidden">
                     <img
-                      src={photo}
-                      alt={`Media Coverage ${index + 1}`}
+                      src={article.image}
+                      alt={`Media coverage by ${article.publication}`}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/70 via-transparent to-transparent" />
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                    {/* Zoom Icon */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                       <div className="bg-white/20 backdrop-blur-sm rounded-full p-3">
                         <svg
                           className="w-8 h-8 text-white"
@@ -397,22 +427,32 @@ const Gallery = () => {
                         </svg>
                       </div>
                     </div>
+
+                    {/* Shine Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
                   </div>
-                </div>
-              </motion.div>
-            ))}
+
+                  {/* Article Content */}
+                  <div className="p-6">
+                    <div className="flex items-center justify-center">
+                      <span className="text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 px-4 py-2 rounded-xl border border-gradient-to-r from-blue-200 to-purple-200 shadow-lg backdrop-blur-sm">
+                        {article.publication}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Border Effect */}
+                  <div className="absolute inset-0 border-2 border-blue-400/0 group-hover:border-blue-400/30 rounded-2xl transition-all duration-500" />
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-            }}
-          />
-        </div>
+        {/* Background Decorations */}
+        <div className="absolute top-20 left-10 w-32 h-32 bg-blue-200/20 rounded-full blur-xl" />
+        <div className="absolute bottom-20 right-10 w-24 h-24 bg-indigo-200/30 rounded-full blur-lg" />
+        <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-purple-200/20 rounded-full blur-md" />
       </section>
 
       {/* Image Popup Modal */}
