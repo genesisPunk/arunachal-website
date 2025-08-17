@@ -680,9 +680,9 @@ const Home = () => {
                   {/* Content */}
                   <div className="mb-3">
                     <iframe
-                      src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D100089994003445&tabs=timeline&width=500&height=315&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+                      src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D100089994003445&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
                       width="100%"
-                      height="315"
+                      height="500"
                       style={{ border: "none", overflow: "hidden" }}
                       scrolling="no"
                       frameBorder="0"
