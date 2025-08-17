@@ -1,8 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
 
 @layer base {
   :root {
@@ -36,7 +36,13 @@
 
     --radius: 0.375rem;
 
-    /* Government theme colors */
+    /* Indian Flag Theme Colors - Central Color Variables */
+    --flag-saffron: 255 153 51;
+    --flag-white: 255 255 255;
+    --flag-green: 19 136 8;
+    --flag-navy: 0 0 128;
+
+    /* Government theme colors (legacy support) */
     --gov-blue: 30 58 138;
     --gov-blue-light: 59 130 246;
     --gov-blue-dark: 29 78 216;
@@ -102,6 +108,41 @@
 }
 
 @layer components {
+  /* Indian Flag Theme Components */
+  .flag-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--flag-saffron)) 0%,
+      hsl(var(--flag-white)) 50%,
+      hsl(var(--flag-green)) 100%
+    );
+  }
+
+  .flag-card {
+    @apply bg-white border border-slate-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200;
+  }
+
+  .flag-button-primary {
+    @apply bg-flag-navy-500 hover:bg-flag-navy-600 text-white font-medium px-6 py-2.5 rounded-md transition-colors duration-200;
+  }
+
+  .flag-button-secondary {
+    @apply bg-white border border-flag-navy-500 text-flag-navy-500 hover:bg-flag-navy-50 font-medium px-6 py-2.5 rounded-md transition-colors duration-200;
+  }
+
+  .flag-text-primary {
+    @apply text-flag-navy-500;
+  }
+
+  .flag-text-secondary {
+    @apply text-slate-600;
+  }
+
+  .flag-text-muted {
+    @apply text-slate-500;
+  }
+
+  /* Government theme components (legacy support) */
   .gov-gradient {
     background: linear-gradient(
       135deg,

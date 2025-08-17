@@ -17,7 +17,7 @@ interface Article {
   image: string;
 }
 
-const Articles = () => {
+const ResearchPapers = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   const articles: Article[] = [
@@ -31,7 +31,7 @@ const Articles = () => {
       date: "January 15, 2024",
       category: "governance",
       readTime: "12 min read",
-      image: "/rr.png",
+      image: "/political-conscience-new.jpg",
     },
     {
       id: "2",
@@ -55,7 +55,7 @@ const Articles = () => {
       date: "January 5, 2024",
       category: "health",
       readTime: "18 min read",
-      image: "/mental-health.jpg",
+      image: "/mental-health-new.png",
     },
     {
       id: "4",
@@ -197,7 +197,7 @@ const Articles = () => {
   ];
 
   const categories = [
-    { id: "all", name: "All Articles" },
+    { id: "all", name: "All Papers" },
     { id: "governance", name: "Governance" },
     { id: "health", name: "Health" },
     { id: "environment", name: "Environment" },
@@ -225,7 +225,7 @@ const Articles = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Articles
+            Research Papers
           </motion.h1>
           <motion.p
             className="text-lg text-gray-700 max-w-2xl mx-auto"
@@ -233,8 +233,8 @@ const Articles = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            Explore research papers and academic contributions by Arunachal
-            Pradesh's youth scholars
+            Explore cutting-edge research papers and academic contributions by
+            Arunachal Pradesh's youth scholars and researchers
           </motion.p>
         </div>
       </div>
@@ -247,8 +247,8 @@ const Articles = () => {
               Submit Your Research Paper
             </h3>
             <p className="text-blue-700">
-              If you want to show your research paper here, please reach out to
-              us at{" "}
+              If you want to showcase your research paper here, please reach out
+              to us at{" "}
               <a
                 href="mailto:Arunachalyouthparliament@gmail.com"
                 className="font-medium underline hover:text-blue-900"
@@ -284,7 +284,7 @@ const Articles = () => {
         </div>
       </section>
 
-      {/* Articles Grid */}
+      {/* Research Papers Grid */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -295,7 +295,7 @@ const Articles = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Card className="h-full hover:shadow-lg transition-shadow duration-300 group flex flex-col bg-orange-50">
+                <Card className="h-full hover:shadow-lg transition-shadow duration-300 group flex flex-col bg-white border border-gray-200">
                   <div className="aspect-video overflow-hidden">
                     <img
                       src={article.image}
@@ -358,13 +358,18 @@ const Articles = () => {
                             "13": "/13. Yagyaj.pdf",
                             "14": "/14. Mudang Onju.pdf",
                           };
-                          const link = document.createElement("a");
-                          link.href =
+                          const pdfPath =
                             pdfFiles[article.id as keyof typeof pdfFiles];
-                          link.download = `${article.author.replace(/[^a-zA-Z0-9]/g, "_")}_Research_Paper.pdf`;
-                          document.body.appendChild(link);
-                          link.click();
-                          document.body.removeChild(link);
+                          if (pdfPath) {
+                            // Always open in new tab
+                            window.open(
+                              pdfPath,
+                              "_blank",
+                              "noopener,noreferrer",
+                            );
+                          } else {
+                            alert("Research paper not available for download.");
+                          }
                         }}
                       >
                         <span>Download Research Paper</span>
@@ -382,4 +387,4 @@ const Articles = () => {
   );
 };
 
-export default Articles;
+export default ResearchPapers;

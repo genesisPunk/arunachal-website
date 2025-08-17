@@ -1,10 +1,9 @@
 import { Suspense, useEffect } from "react";
 import { useRoutes, Routes, Route, useNavigate } from "react-router-dom";
 import Home from "./components/home";
-import WhosWho from "./pages/WhosWho";
 import Gallery from "./pages/Gallery";
-import Articles from "./pages/Articles";
-import Partner from "./pages/Partner";
+import ResearchPapers from "./pages/ResearchPapers";
+import FAQ from "./pages/FAQ";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import routes from "tempo-routes";
@@ -30,12 +29,11 @@ function App() {
         {import.meta.env.VITE_TEMPO === "true" && useRoutes(routes)}
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/whos-who" element={<WhosWho />} />
           <Route path="/gallery" element={<Gallery />} />
-          <Route path="/articles" element={<Articles />} />
-          <Route path="/partner" element={<Partner />} />
+          <Route path="/research-papers" element={<ResearchPapers />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/faq" element={<FAQ />} />
         </Routes>
       </>
     </Suspense>

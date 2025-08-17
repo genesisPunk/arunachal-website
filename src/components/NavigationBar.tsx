@@ -14,17 +14,16 @@ const NavigationBar = ({ className = "" }: NavigationBarProps) => {
   // Navigation links
   const navLinks = [
     { name: "Home", path: "/" },
-    { name: "Who's Who", path: "/whos-who" },
     { name: "Gallery", path: "/gallery" },
-    { name: "Articles", path: "/articles" },
-    { name: "Partners", path: "/partner" },
+    { name: "Research Papers", path: "/research-papers" },
     { name: "About Us", path: "/about-us" },
     { name: "Contact Us", path: "/contact-us" },
+    { name: "FAQ", path: "/faq" },
   ];
 
   return (
     <nav
-      className={`w-full bg-white border-b border-slate-200 shadow-sm ${className}`}
+      className={`w-full md:bg-white md:border-b md:border-slate-200 md:shadow-sm ${className}`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
@@ -38,10 +37,12 @@ const NavigationBar = ({ className = "" }: NavigationBarProps) => {
                   className="h-full w-full object-contain"
                 />
               </div>
-              <div className="ml-3">
+              <div className="ml-3 flex items-center">
+                <img src="/bird-1.png" alt="Bird 1" className="h-6 w-6 mr-2" />
                 <span className="text-lg font-semibold text-slate-800">
                   AP Youth Parliament
                 </span>
+                <img src="/bird-2.png" alt="Bird 2" className="h-6 w-6 ml-2" />
               </div>
             </Link>
           </div>

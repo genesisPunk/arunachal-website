@@ -77,34 +77,48 @@ const ContactUs = () => {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {contactInfo.map((info, index) => {
                 const IconComponent = info.icon;
+                const isEmailOrOfficeHours =
+                  info.title === "Email" || info.title === "Office Hours";
                 return (
                   <motion.div
                     key={index}
-                    className="bg-white rounded-lg shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300"
+                    className="bg-white rounded-lg shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300 flex flex-col min-h-[200px]"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <div className="flex items-start space-x-4">
+                    <div className="flex items-start space-x-4 flex-1">
                       <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-rose-500 rounded-full flex items-center justify-center flex-shrink-0">
                         <IconComponent className="w-6 h-6 text-white" />
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-semibold text-[#000080] mb-2 text-lg">
-                          {info.title}
-                        </h3>
-                        <div className="space-y-1">
-                          {info.details.map((detail, idx) => (
-                            <p
-                              key={idx}
-                              className="text-gray-700 text-sm leading-relaxed break-words"
-                            >
-                              {detail}
-                            </p>
-                          ))}
+                      <div className="flex-1 min-w-0 flex flex-col justify-between h-full">
+                        <div>
+                          <h3 className="font-semibold text-[#000080] mb-2 text-lg">
+                            {info.title}
+                          </h3>
+                          <div className="space-y-1">
+                            {info.details.map((detail, idx) =>
+                              info.title === "Email" ? (
+                                <a
+                                  key={idx}
+                                  href={`mailto:${detail}`}
+                                  className="text-blue-600 hover:text-blue-800 text-sm leading-relaxed break-words underline transition-colors duration-200 block"
+                                >
+                                  {detail}
+                                </a>
+                              ) : (
+                                <p
+                                  key={idx}
+                                  className="text-gray-700 text-sm leading-relaxed break-words"
+                                >
+                                  {detail}
+                                </p>
+                              ),
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -123,15 +137,15 @@ const ContactUs = () => {
               <h3 className="text-2xl font-bold text-[#000080] mb-6">
                 Follow Us
               </h3>
-              <div className="flex justify-center space-x-6">
+              <div className="flex justify-center space-x-8">
                 <a
                   href="https://www.facebook.com/share/1G5BgPRu2M/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors duration-300 shadow-lg"
+                  className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl flex items-center justify-center hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-110 hover:-rotate-3"
                 >
                   <svg
-                    className="w-6 h-6 text-white"
+                    className="w-8 h-8 text-white"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
@@ -147,15 +161,35 @@ const ContactUs = () => {
                   href="https://x.com/AYPArunachal?s=08"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-black rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors duration-300 shadow-lg"
+                  className="w-16 h-16 bg-gradient-to-br from-gray-900 to-black rounded-2xl flex items-center justify-center hover:from-black hover:to-gray-800 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-110 hover:rotate-3"
                 >
                   <svg
-                    className="w-6 h-6 text-white"
+                    className="w-8 h-8 text-white"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
                   >
-                    <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
+                </a>
+                <a
+                  href="https://www.instagram.com/arunachal_youth_parliament?igsh=MzFscTEzNmZ4bjRi&utm_source=qr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-16 h-16 bg-gradient-to-br from-pink-500 to-purple-600 rounded-2xl flex items-center justify-center hover:from-pink-600 hover:to-purple-700 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-110 hover:-rotate-3"
+                >
+                  <svg
+                    className="w-8 h-8 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M12.017 0C8.396 0 8.025.015 6.624.072 5.224.13 4.297.333 3.488.63c-.826.32-1.527.748-2.223 1.444-.696.696-1.125 1.397-1.444 2.223C.333 5.104.13 6.031.072 7.431.015 8.832 0 9.203 0 12.017c0 3.814.015 4.185.072 5.586.058 1.4.261 2.327.558 3.136.32.826.748 1.527 1.444 2.223.696.696 1.397 1.125 2.223 1.444.809.297 1.736.5 3.136.558 1.401.057 1.772.072 5.586.072 3.814 0 4.185-.015 5.586-.072 1.4-.058 2.327-.261 3.136-.558.826-.32 1.527-.748 2.223-1.444.696-.696 1.125-1.397 1.444-2.223.297-.809.5-1.736.558-3.136.057-1.401.072-1.772.072-5.586 0-3.814-.015-4.185-.072-5.586-.058-1.4-.261-2.327-.558-3.136-.32-.826-.748-1.527-1.444-2.223C19.777.748 19.076.32 18.25 0c-.809-.297-1.736-.5-3.136-.558C13.713.015 13.342 0 12.017 0zm0 2.162c3.204 0 3.584.012 4.85.07 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.06 1.268.072 1.646.072 4.85s-.012 3.584-.072 4.85c-.053 1.17-.249 1.805-.413 2.227-.218.562-.477.96-.896 1.382-.419.419-.819.679-1.381.896-.422.164-1.057.36-2.227.413-1.268.06-1.646.072-4.85.072s-3.584-.012-4.85-.072c-1.17-.053-1.805-.249-2.227-.413-.562-.218-.96-.477-1.382-.896-.419-.419-.679-.819-.896-1.381-.164-.422-.36-1.057-.413-2.227-.06-1.268-.072-1.646-.072-4.85s.012-3.584.072-4.85c.053-1.17.249-1.805.413-2.227.218-.562.477-.96.896-1.382.419-.419.819-.679 1.381-.896.422-.164 1.057-.36 2.227-.413 1.268-.06 1.646-.072 4.85-.072z"
+                      clipRule="evenodd"
+                    />
+                    <path d="M12.017 15.33a3.312 3.312 0 1 1 0-6.624 3.312 3.312 0 0 1 0 6.624zM12.017 7.052a4.963 4.963 0 1 0 0 9.926 4.963 4.963 0 0 0 0-9.926zM18.286 6.776a1.16 1.16 0 1 1-2.32 0 1.16 1.16 0 0 1 2.32 0z" />
                   </svg>
                 </a>
               </div>

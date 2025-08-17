@@ -54,7 +54,56 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Government theme colors
+        // Indian Flag Theme Colors - Central Color Definitions
+        "flag-saffron": {
+          50: "#fef7ed",
+          100: "#fdedd3",
+          200: "#fbd9a5",
+          300: "#f8c06d",
+          400: "#f59e0b",
+          500: "#ff9933", // Main saffron
+          600: "#ea580c",
+          700: "#c2410c",
+          800: "#9a3412",
+          900: "#7c2d12",
+        },
+        "flag-white": {
+          50: "#ffffff",
+          100: "#fefefe",
+          200: "#fafafa",
+          300: "#f5f5f5",
+          400: "#efefef",
+          500: "#ffffff", // Pure white
+          600: "#e5e5e5",
+          700: "#d4d4d4",
+          800: "#a3a3a3",
+          900: "#737373",
+        },
+        "flag-green": {
+          50: "#f0fdf4",
+          100: "#dcfce7",
+          200: "#bbf7d0",
+          300: "#86efac",
+          400: "#4ade80",
+          500: "#138808", // Main green
+          600: "#16a34a",
+          700: "#15803d",
+          800: "#166534",
+          900: "#14532d",
+        },
+        "flag-navy": {
+          50: "#eff6ff",
+          100: "#dbeafe",
+          200: "#bfdbfe",
+          300: "#93c5fd",
+          400: "#60a5fa",
+          500: "#000080", // Navy blue
+          600: "#2563eb",
+          700: "#1d4ed8",
+          800: "#1e40af",
+          900: "#1e3a8a",
+        },
+        // Government theme colors (legacy support)
         "gov-blue": {
           50: "#eff6ff",
           100: "#dbeafe",

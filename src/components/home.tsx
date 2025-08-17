@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import NavigationBar from "./NavigationBar";
 import AnnouncementSection from "./AnnouncementSection";
+import SpeakersCarousel from "./SpeakersCarousel";
 
 import { motion } from "framer-motion";
 import {
@@ -93,8 +94,17 @@ const Home = () => {
       <NavigationBar />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-slate-50 to-blue-50 py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+      <section className="relative py-20 overflow-hidden">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: 'url("/ayp-parliament-session.jpg")',
+          }}
+        ></div>
+        {/* Overlay for blur and dull effect */}
+        <div className="absolute inset-0 bg-white/50 backdrop-blur-[3px]"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-100/30 via-white/50 to-green-100/30"></div>
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
@@ -104,17 +114,105 @@ const Home = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="w-64 h-64 mx-auto mb-4">
-                <img
-                  src="/ayp-new-logo-circular.png"
-                  alt="Arunachal Pradesh Youth Parliament Logo"
-                  className="w-full h-full object-contain"
-                />
+              <div className="flex items-center justify-center gap-2 md:gap-8 mb-4 relative">
+                {/* Left side images */}
+                <div className="flex flex-col gap-1 md:gap-4">
+                  <motion.div
+                    className="w-16 h-16 md:w-32 md:h-32"
+                    initial={{ opacity: 0, scale: 0, x: 50, y: 50 }}
+                    animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
+                    transition={{
+                      duration: 1.2,
+                      delay: 0.8,
+                      type: "spring",
+                      stiffness: 80,
+                      damping: 12,
+                    }}
+                  >
+                    <img
+                      src="/cultural-image-1.png"
+                      alt="Cultural Image 1"
+                      className="w-full h-full object-contain"
+                    />
+                  </motion.div>
+                  <motion.div
+                    className="w-16 h-16 md:w-32 md:h-32"
+                    initial={{ opacity: 0, scale: 0, x: 50, y: -50 }}
+                    animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
+                    transition={{
+                      duration: 1.2,
+                      delay: 1.0,
+                      type: "spring",
+                      stiffness: 80,
+                      damping: 12,
+                    }}
+                  >
+                    <img
+                      src="/cultural-image-2.png"
+                      alt="Cultural Image 2"
+                      className="w-full h-full object-contain"
+                    />
+                  </motion.div>
+                </div>
+
+                {/* Main logo */}
+                <motion.div
+                  className="w-48 h-48 md:w-64 md:h-64"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                >
+                  <img
+                    src="/ayp-new-logo-circular.png"
+                    alt="Arunachal Pradesh Youth Parliament Logo"
+                    className="w-full h-full object-contain"
+                  />
+                </motion.div>
+
+                {/* Right side images */}
+                <div className="flex flex-col gap-1 md:gap-4">
+                  <motion.div
+                    className="w-16 h-16 md:w-32 md:h-32"
+                    initial={{ opacity: 0, scale: 0, x: -50, y: 50 }}
+                    animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
+                    transition={{
+                      duration: 1.2,
+                      delay: 1.2,
+                      type: "spring",
+                      stiffness: 80,
+                      damping: 12,
+                    }}
+                  >
+                    <img
+                      src="/cultural-image-3.png"
+                      alt="Cultural Image 3"
+                      className="w-full h-full object-contain"
+                    />
+                  </motion.div>
+                  <motion.div
+                    className="w-16 h-16 md:w-32 md:h-32"
+                    initial={{ opacity: 0, scale: 0, x: -50, y: -50 }}
+                    animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
+                    transition={{
+                      duration: 1.2,
+                      delay: 1.4,
+                      type: "spring",
+                      stiffness: 80,
+                      damping: 12,
+                    }}
+                  >
+                    <img
+                      src="/cultural-image-1.png"
+                      alt="Cultural Image 1"
+                      className="w-full h-full object-contain"
+                    />
+                  </motion.div>
+                </div>
               </div>
             </motion.div>
 
             <motion.p
-              className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto mb-8 leading-relaxed"
+              className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto mb-8 leading-relaxed font-bold"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -147,15 +245,9 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Prominent Upcoming Event Section */}
+      {/* Announcements Section */}
       <section id="announcements" className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-center mb-2 text-[#3b82f6]">
-              Upcoming Event
-            </h2>
-            <div className="w-24 h-1 bg-blue-800 mx-auto mb-4"></div>
-          </div>
           <AnnouncementSection />
         </div>
       </section>
@@ -221,21 +313,415 @@ const Home = () => {
                       Register Now
                     </button>
                   </DialogTrigger>
-                  <DialogContent className="sm:max-w-md">
-                    <DialogHeader>
-                      <DialogTitle className="text-center text-xl font-bold">
+                  <DialogContent className="sm:max-w-md bg-white/95 backdrop-blur-xl border-0 shadow-2xl rounded-3xl">
+                    <DialogHeader className="text-center pb-6">
+                      <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <svg
+                          className="w-8 h-8 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                      </div>
+                      <DialogTitle className="text-center text-2xl font-bold bg-gradient-to-r from-orange-600 to-green-600 bg-clip-text text-transparent">
                         Registration Status
                       </DialogTitle>
                     </DialogHeader>
-                    <div className="flex justify-center py-6">
-                      <p className="text-center text-lg text-gray-700">
-                        To be notified soon
-                      </p>
+                    <div className="flex flex-col items-center py-6">
+                      <div className="bg-gradient-to-r from-orange-50 to-green-50 rounded-2xl p-6 mb-4 border border-orange-200/50">
+                        <p className="text-center text-lg text-gray-700 font-medium">
+                          Registration will open soon!
+                        </p>
+                        <p className="text-center text-sm text-gray-600 mt-2">
+                          Stay tuned for updates on our social media channels.
+                        </p>
+                      </div>
                     </div>
                   </DialogContent>
                 </Dialog>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Previous Speakers & Dignitaries Section */}
+      <section className="py-16 bg-gradient-to-br from-slate-100 to-blue-50">
+        <SpeakersCarousel />
+      </section>
+
+      {/* Partners Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-7xl mx-auto">
+            {/* Header */}
+            <motion.div
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-3xl font-bold text-slate-800 mb-4">
+                Our Strategic Partners
+              </h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-orange-500 via-white to-green-500 mx-auto mb-4" />
+              <p className="text-slate-600 max-w-2xl mx-auto">
+                Collaborating with leading organizations to empower youth and
+                drive positive change across Arunachal Pradesh
+              </p>
+            </motion.div>
+
+            {/* Main Partners */}
+            <motion.div
+              className="mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <h3 className="text-2xl font-bold text-center text-slate-800 mb-8">
+                Key Partners
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                {[
+                  {
+                    name: "Department of Youth Affairs",
+                    logo: "/youth_affairs.png",
+                    link: "https://www.yas.nic.in/youth-affairs/arunachal-pradesh",
+                    description:
+                      "Government partnership for youth development initiatives",
+                  },
+                  {
+                    name: "Hill Society",
+                    logo: "/hills_society.png",
+                    link: "",
+                    description:
+                      "Community organization promoting cultural heritage",
+                  },
+                  {
+                    name: "Youth Mission For Clean River",
+                    logo: "/youth_mission.png",
+                    link: "https://www.facebook.com/youthmissionforcleanriver/",
+                    description:
+                      "Environmental conservation and river cleanup initiatives",
+                  },
+                ].map((partner, index) => (
+                  <motion.div
+                    key={index}
+                    className="group relative h-full"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    whileHover={{ y: -10 }}
+                  >
+                    <div className="bg-gradient-to-br from-white to-slate-50 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-slate-100 group-hover:border-blue-200 h-full flex flex-col">
+                      {/* Background Pattern */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-white to-green-50 opacity-0 group-hover:opacity-60 rounded-2xl transition-opacity duration-500" />
+
+                      {/* Content */}
+                      <div className="relative z-10 flex flex-col h-full">
+                        <div className="flex justify-center mb-6">
+                          <motion.div
+                            className="w-32 h-32 rounded-full overflow-hidden bg-white shadow-xl border-4 border-gradient-to-r from-orange-400 via-white to-green-400"
+                            whileHover={{ scale: 1.1, rotate: 5 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <img
+                              src={partner.logo}
+                              alt={`${partner.name} logo`}
+                              className="w-full h-full object-contain p-2"
+                            />
+                          </motion.div>
+                        </div>
+
+                        <h4 className="text-xl font-bold text-slate-800 mb-3 text-center group-hover:text-blue-700 transition-colors duration-300">
+                          {partner.name}
+                        </h4>
+
+                        <p className="text-sm text-slate-600 text-center mb-4 leading-relaxed flex-grow">
+                          {partner.description}
+                        </p>
+
+                        {partner.link && (
+                          <div className="text-center mt-auto">
+                            <motion.button
+                              onClick={() =>
+                                window.open(partner.link, "_blank")
+                              }
+                              className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500 to-green-500 text-white rounded-full text-sm font-medium hover:from-blue-600 hover:to-green-600 transition-all duration-300 shadow-md hover:shadow-lg"
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                            >
+                              <span>Visit Website</span>
+                              <svg
+                                className="w-4 h-4 ml-2"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                />
+                              </svg>
+                            </motion.button>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Decorative Elements */}
+                      <div className="absolute top-4 right-4 w-8 h-8 bg-gradient-to-br from-orange-200 to-transparent rounded-full opacity-30" />
+                      <div className="absolute bottom-4 left-4 w-6 h-6 bg-gradient-to-br from-green-200 to-transparent rounded-full opacity-30" />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* University Partners */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <h3 className="text-xl font-semibold text-center text-slate-700 mb-8">
+                Academic Partners
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6">
+                {[
+                  {
+                    name: "Rajiv Gandhi University",
+                    logo: "/rajiv-gandhi-university.jpg",
+                    link: "https://new.rgu.ac.in/",
+                  },
+                  {
+                    name: "Arunachal Law Academy",
+                    logo: "/arunachal-law-academy.png",
+                    link: "https://arunachallawacademy.com/",
+                  },
+                  {
+                    name: "Himalayan University",
+                    logo: "/himalayan-university.jpg",
+                    link: "https://www.himalayanuniversity.com/",
+                  },
+                  {
+                    name: "Dera Natung Government College",
+                    logo: "/dera-natung-college.png",
+                    link: "https://dngc.ac.in/",
+                  },
+                  {
+                    name: "Don Bosco College",
+                    logo: "/don-bosco-college.jpg",
+                    link: "https://dbcitanagar.ac.in/",
+                  },
+                  {
+                    name: "National Institute of Technology",
+                    logo: "/national-institute-technology.jpg",
+                    link: "https://www.nitap.ac.in/",
+                  },
+                  {
+                    name: "North East Regional Institute",
+                    logo: "/north-east-regional-institute.jpg",
+                    link: "https://nerist.ac.in/",
+                  },
+                ].map((partner, index) => (
+                  <motion.div
+                    key={index}
+                    className="group h-full"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: index * 0.05 }}
+                    whileHover={{ y: -5 }}
+                    onClick={() =>
+                      partner.link && window.open(partner.link, "_blank")
+                    }
+                  >
+                    <div className="bg-white rounded-xl p-4 shadow-md hover:shadow-lg transition-all duration-300 border border-slate-100 group-hover:border-slate-200 h-full flex flex-col cursor-pointer">
+                      <div className="flex justify-center mb-3">
+                        <motion.div
+                          className="w-16 h-16 rounded-full overflow-hidden bg-slate-50 shadow-sm"
+                          whileHover={{ scale: 1.1 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <img
+                            src={partner.logo}
+                            alt={`${partner.name} logo`}
+                            className="w-full h-full object-contain p-1"
+                          />
+                        </motion.div>
+                      </div>
+                      <h5 className="text-xs font-medium text-slate-700 text-center leading-tight group-hover:text-blue-600 transition-colors duration-300 flex-grow flex items-center justify-center">
+                        {partner.name}
+                      </h5>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stay Connected Section */}
+      <section className="py-20 bg-blue-300 relative overflow-hidden">
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-7xl mx-auto">
+            {/* Header */}
+            <motion.div
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-5xl font-bold text-white mb-6">
+                Stay Connected
+              </h2>
+              <div className="w-32 h-1 bg-white mx-auto mb-6 rounded-full shadow-md" />
+              <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
+                Follow our journey and stay updated with the latest news,
+                events, and initiatives
+              </p>
+            </motion.div>
+
+            {/* Two Column Layout */}
+            <div className="flex flex-col lg:flex-row items-center justify-center max-w-6xl mx-auto">
+              {/* First Column - Image */}
+              <motion.div
+                className="lg:w-3/5 w-full relative"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <div className="relative overflow-hidden rounded-3xl shadow-2xl">
+                  <img
+                    src="/dodum.jpg"
+                    alt="Dodum Natung - Chairman, AYP"
+                    className="w-full h-[500px] object-cover"
+                  />
+                  {/* Name and Position Overlay */}
+                  <div className="absolute bottom-6 left-6 bg-black/70 backdrop-blur-sm rounded-2xl p-4 text-white">
+                    <h3 className="text-xl font-bold mb-1">Dodum Natung</h3>
+                    <p className="text-sm text-gray-200 mb-3">Chairman, AYP</p>
+                    {/* Social Media Icons */}
+                    <div className="flex space-x-3">
+                      <a
+                        href="https://www.facebook.com/profile.php?id=100087370252292"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                      >
+                        <svg
+                          className="w-5 h-5 text-white"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg>
+                      </a>
+                      <a
+                        href="https://x.com/DodumNatung"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-10 h-10 bg-gradient-to-br from-gray-900 to-black rounded-xl flex items-center justify-center hover:from-black hover:to-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                      >
+                        <svg
+                          className="w-5 h-5 text-white"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Second Column - Facebook Embed (Overlapping) */}
+              <motion.div
+                className="lg:w-1/3 w-full lg:-ml-20 mt-8 lg:mt-0 relative z-10"
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-4 border border-white/20 shadow-2xl">
+                  {/* Header */}
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-10 h-10 bg-blue-700 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg
+                          className="w-5 h-5 text-white"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="text-base font-bold text-white mb-1">
+                          Facebook
+                        </h3>
+                        <p className="text-blue-100 text-xs">
+                          Latest posts & updates
+                        </p>
+                      </div>
+                    </div>
+                    <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse" />
+                  </div>
+
+                  {/* Content */}
+                  <div className="mb-3">
+                    <iframe
+                      src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D100089994003445&tabs=timeline&width=224&height=315&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+                      width="100%"
+                      height="315"
+                      style={{ border: "none", overflow: "hidden" }}
+                      scrolling="no"
+                      frameBorder="0"
+                      allowFullScreen={true}
+                      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                      className="rounded-2xl shadow-lg"
+                    ></iframe>
+                  </div>
+
+                  {/* Action Button */}
+                  <motion.button
+                    onClick={() =>
+                      window.open(
+                        "https://www.facebook.com/profile.php?id=100089994003445",
+                        "_blank",
+                      )
+                    }
+                    className="w-full bg-blue-700 text-white py-2 px-3 rounded-2xl font-semibold text-xs hover:bg-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 group"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <span>Follow on Facebook</span>
+                    <svg
+                      className="w-3 h-3 group-hover:translate-x-1 transition-transform duration-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </motion.button>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -280,16 +766,16 @@ const Home = () => {
                 Empowering youth to become agents of change through democratic
                 participation and civic engagement.
               </p>
-              <div className="flex space-x-4">
+              <div className="flex space-x-6">
                 <a
                   href="https://www.facebook.com/share/1G5BgPRu2M/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-400 hover:text-blue-400 transition-colors"
+                  className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-110"
                 >
                   <span className="sr-only">Facebook</span>
                   <svg
-                    className="w-6 h-6"
+                    className="w-6 h-6 text-white"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
@@ -305,16 +791,37 @@ const Home = () => {
                   href="https://x.com/AYPArunachal?s=08"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-400 hover:text-blue-400 transition-colors"
+                  className="w-12 h-12 bg-gradient-to-br from-gray-900 to-black rounded-xl flex items-center justify-center hover:from-black hover:to-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-110"
                 >
-                  <span className="sr-only">Twitter</span>
+                  <span className="sr-only">X (Twitter)</span>
                   <svg
-                    className="w-6 h-6"
+                    className="w-6 h-6 text-white"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
                   >
-                    <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
+                </a>
+                <a
+                  href="https://www.instagram.com/arunachal_youth_parliament?igsh=MzFscTEzNmZ4bjRi&utm_source=qr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-gradient-to-br from-pink-500 to-purple-600 rounded-xl flex items-center justify-center hover:from-pink-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-110"
+                >
+                  <span className="sr-only">Instagram</span>
+                  <svg
+                    className="w-6 h-6 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M12.017 0C8.396 0 8.025.015 6.624.072 5.224.13 4.297.333 3.488.63c-.826.32-1.527.748-2.223 1.444-.696.696-1.125 1.397-1.444 2.223C.333 5.104.13 6.031.072 7.431.015 8.832 0 9.203 0 12.017c0 3.814.015 4.185.072 5.586.058 1.4.261 2.327.558 3.136.32.826.748 1.527 1.444 2.223.696.696 1.397 1.125 2.223 1.444.809.297 1.736.5 3.136.558 1.401.057 1.772.072 5.586.072 3.814 0 4.185-.015 5.586-.072 1.4-.058 2.327-.261 3.136-.558.826-.32 1.527-.748 2.223-1.444.696-.696 1.125-1.397 1.444-2.223.297-.809.5-1.736.558-3.136.057-1.401.072-1.772.072-5.586 0-3.814-.015-4.185-.072-5.586-.058-1.4-.261-2.327-.558-3.136-.32-.826-.748-1.527-1.444-2.223C19.777.748 19.076.32 18.25 0c-.809-.297-1.736-.5-3.136-.558C13.713.015 13.342 0 12.017 0zm0 2.162c3.204 0 3.584.012 4.85.07 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.06 1.268.072 1.646.072 4.85s-.012 3.584-.072 4.85c-.053 1.17-.249 1.805-.413 2.227-.218.562-.477.96-.896 1.382-.419.419-.819.679-1.381.896-.422.164-1.057.36-2.227.413-1.268.06-1.646.072-4.85.072s-3.584-.012-4.85-.072c-1.17-.053-1.805-.249-2.227-.413-.562-.218-.96-.477-1.382-.896-.419-.419-.679-.819-.896-1.381-.164-.422-.36-1.057-.413-2.227-.06-1.268-.072-1.646-.072-4.85s.012-3.584.072-4.85c.053-1.17.249-1.805.413-2.227.218-.562.477-.96.896-1.382.419-.419.819-.679 1.381-.896.422-.164 1.057-.36 2.227-.413 1.268-.06 1.646-.072 4.85-.072z"
+                      clipRule="evenodd"
+                    />
+                    <path d="M12.017 15.33a3.312 3.312 0 1 1 0-6.624 3.312 3.312 0 0 1 0 6.624zM12.017 7.052a4.963 4.963 0 1 0 0 9.926 4.963 4.963 0 0 0 0-9.926zM18.286 6.776a1.16 1.16 0 1 1-2.32 0 1.16 1.16 0 0 1 2.32 0z" />
                   </svg>
                 </a>
               </div>
@@ -322,62 +829,23 @@ const Home = () => {
             <div>
               <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
               <ul className="space-y-2">
-                <li>
-                  <a
-                    href="/"
-                    className="text-slate-300 hover:text-white transition-colors"
-                  >
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/whos-who"
-                    className="text-slate-300 hover:text-white transition-colors"
-                  >
-                    Who's Who
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/gallery"
-                    className="text-slate-300 hover:text-white transition-colors"
-                  >
-                    Gallery
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/articles"
-                    className="text-slate-300 hover:text-white transition-colors"
-                  >
-                    Articles
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/partner"
-                    className="text-slate-300 hover:text-white transition-colors"
-                  >
-                    Partners
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/about-us"
-                    className="text-slate-300 hover:text-white transition-colors"
-                  >
-                    About Us
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/contact-us"
-                    className="text-slate-300 hover:text-white transition-colors"
-                  >
-                    Contact Us
-                  </a>
-                </li>
+                {[
+                  { name: "Home", path: "/" },
+                  { name: "Gallery", path: "/gallery" },
+                  { name: "Research Papers", path: "/research-papers" },
+                  { name: "About Us", path: "/about-us" },
+                  { name: "Contact Us", path: "/contact-us" },
+                  { name: "FAQ", path: "/faq" },
+                ].map((link) => (
+                  <li key={link.name}>
+                    <a
+                      href={link.path}
+                      className="text-slate-300 hover:text-white transition-colors"
+                    >
+                      {link.name}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
             <div>
@@ -386,8 +854,8 @@ const Home = () => {
               </h3>
               <div className="text-slate-300 space-y-1">
                 <p>
-                  Office: Pine Hill Guest House and Restro, Upper Niti Vihar,
-                  near MG Park, Itanagar
+                  Office: Pine Hill apartment, upper niti vihar, opposite MG
+                  Park, Itanagar
                 </p>
                 <p>Email: Arunachalyouthparliament@gmail.com</p>
                 <p>Phone: +917085527246</p>
