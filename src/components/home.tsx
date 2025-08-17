@@ -793,7 +793,7 @@ const Home = () => {
 
               {/* Second Column - Facebook Embed (Overlapping) */}
               <motion.div
-                className="lg:w-2/3 w-full lg:-ml-20 mt-8 lg:mt-0 relative z-10"
+                className="lg:w-1/2 w-full lg:-ml-20 mt-8 lg:mt-0 relative z-10"
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
@@ -826,7 +826,7 @@ const Home = () => {
                   {/* Content */}
                   <div className="mb-3">
                     <iframe
-                      src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D100089994003445&tabs=timeline&width=500&height=600&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+                      src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D100089994003445&tabs=timeline&width=350&height=600&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
                       width="100%"
                       height="600"
                       style={{ border: "none", overflow: "hidden" }}
