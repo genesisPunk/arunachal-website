@@ -754,38 +754,42 @@ const Home = () => {
                   />
                   {/* Name and Position Overlay */}
                   <div className="absolute bottom-6 left-6 bg-black/70 backdrop-blur-sm rounded-2xl p-4 text-white">
-                    <h3 className="text-xl font-bold mb-1">Dodum Natung</h3>
-                    <p className="text-sm text-gray-200 mb-3">Chairman, AYP</p>
-                    {/* Social Media Icons */}
-                    <div className="flex space-x-3">
-                      <a
-                        href="https://www.facebook.com/profile.php?id=100087370252292"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
-                      >
-                        <svg
-                          className="w-5 h-5 text-white"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
+                    <div className="flex items-center space-x-6">
+                      <div>
+                        <h3 className="text-xl font-bold mb-1">Dodum Natung</h3>
+                        <p className="text-sm text-gray-200">Chairman, AYP</p>
+                      </div>
+                      {/* Social Media Icons */}
+                      <div className="flex space-x-2">
+                        <a
+                          href="https://www.facebook.com/profile.php?id=100087370252292"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
                         >
-                          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                        </svg>
-                      </a>
-                      <a
-                        href="https://x.com/DodumNatung"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-10 h-10 bg-gradient-to-br from-gray-900 to-black rounded-xl flex items-center justify-center hover:from-black hover:to-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
-                      >
-                        <svg
-                          className="w-5 h-5 text-white"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
+                          <svg
+                            className="w-4 h-4 text-white"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                          </svg>
+                        </a>
+                        <a
+                          href="https://x.com/DodumNatung"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-8 h-8 bg-gradient-to-br from-gray-900 to-black rounded-lg flex items-center justify-center hover:from-black hover:to-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
                         >
-                          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                        </svg>
-                      </a>
+                          <svg
+                            className="w-4 h-4 text-white"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                          </svg>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -793,7 +797,7 @@ const Home = () => {
 
               {/* Second Column - Facebook Embed (Overlapping) */}
               <motion.div
-                className="lg:w-1/2 w-full lg:-ml-20 mt-8 lg:mt-0 relative z-10"
+                className="lg:w-1/3 w-full lg:-ml-16 mt-8 lg:mt-0 relative z-10"
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
@@ -826,15 +830,15 @@ const Home = () => {
                   {/* Content */}
                   <div className="mb-3">
                     <iframe
-                      src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D100089994003445&tabs=timeline&width=350&height=600&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+                      src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D100089994003445&tabs=timeline&width=350&height=480&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
                       width="100%"
-                      height="600"
-                      style={{ border: "none", overflow: "hidden" }}
+                      height="480"
+                      style={{ border: "none", overflow: "hidden", width: "100%", maxWidth: "100%" }}
                       scrolling="no"
                       frameBorder="0"
                       allowFullScreen={true}
                       allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                      className="rounded-2xl shadow-lg"
+                      className="rounded-2xl shadow-lg w-full"
                     ></iframe>
                   </div>
 
