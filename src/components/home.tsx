@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import NavigationBar from "./NavigationBar";
 import AnnouncementSection from "./AnnouncementSection";
 import SpeakersCarousel from "./SpeakersCarousel";
@@ -88,6 +88,7 @@ const InitiativeCard = ({
 };
 
 const Home = () => {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation Bar */}
@@ -257,8 +258,8 @@ const Home = () => {
                   />
                 </svg>
               </a>
-              <a
-                href="/about-us"
+              <Link
+                to="/about-us"
                 className="inline-flex items-center justify-center text-xs sm:text-sm md:text-base py-2 sm:py-2.5 md:py-3 px-3 sm:px-4 md:px-6 bg-white/90 backdrop-blur-sm text-[#000080] font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border-2 border-[#000080]/20 hover:border-[#000080]/40 hover:bg-white"
               >
                 <span>Learn More</span>
@@ -275,7 +276,7 @@ const Home = () => {
                     d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
                   />
                 </svg>
-              </a>
+              </Link>
             </motion.div>
           </div>
         </div>
@@ -425,7 +426,7 @@ const Home = () => {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{ duration: 0.8, delay: index * 0.2 }}
                   whileHover={{ y: -10, scale: 1.02 }}
-                  onClick={() => (window.location.href = "/gallery")}
+                  onClick={() => navigate("/gallery")}
                 >
                   {/* Background Gradient */}
                   <div className="absolute inset-0 bg-gradient-to-br from-orange-400/20 via-transparent to-green-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
@@ -460,7 +461,7 @@ const Home = () => {
               transition={{ duration: 0.8, delay: 0.8 }}
             >
               <motion.button
-                onClick={() => (window.location.href = "/gallery")}
+                onClick={() => navigate("/gallery")}
                 className="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-orange-500 via-orange-600 to-green-600 text-white font-bold text-lg rounded-full shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -894,12 +895,12 @@ const Home = () => {
             >
               Contact Us
             </Link>
-            <a
-              href="/about-us"
+            <Link
+              to="/about-us"
               className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-md font-medium hover:bg-white hover:text-blue-800 transition duration-300"
             >
               Learn More
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -988,12 +989,12 @@ const Home = () => {
                   { name: "FAQ", path: "/faq" },
                 ].map((link) => (
                   <li key={link.name}>
-                    <a
-                      href={link.path}
+                    <Link
+                      to={link.path}
                       className="text-slate-300 hover:text-white transition-colors"
                     >
                       {link.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
