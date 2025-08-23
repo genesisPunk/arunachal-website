@@ -325,19 +325,19 @@ const Articles = () => {
                 <TabsList className="grid w-full grid-cols-3 bg-white shadow-lg border border-gray-200">
                   <TabsTrigger
                     value="all"
-                    className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-green-500 data-[state=active]:text-white"
+                    className="text-gray-600 data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-green-500 data-[state=active]:text-white"
                   >
                     All
                   </TabsTrigger>
                   <TabsTrigger
                     value="article"
-                    className="data-[state=active]:bg-blue-500 data-[state=active]:text-white"
+                    className="text-gray-600 data-[state=active]:bg-blue-500 data-[state=active]:text-white"
                   >
                     Articles
                   </TabsTrigger>
                   <TabsTrigger
                     value="blog"
-                    className="data-[state=active]:bg-purple-500 data-[state=active]:text-white"
+                    className="text-gray-600 data-[state=active]:bg-purple-500 data-[state=active]:text-white"
                   >
                     Blogs
                   </TabsTrigger>
@@ -501,7 +501,7 @@ const Articles = () => {
         open={!!selectedArticle}
         onOpenChange={() => setSelectedArticle(null)}
       >
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-gradient-to-br from-orange-50/80 via-white/90 to-green-50/80 backdrop-blur-sm border border-orange-200/30 shadow-2xl rounded-xl">
+        <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto bg-gradient-to-br from-orange-50/80 via-white/90 to-green-50/80 backdrop-blur-sm border border-orange-200/30 shadow-2xl rounded-xl">
           {selectedArticle && (
             <>
               <DialogHeader>

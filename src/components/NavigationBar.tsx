@@ -98,7 +98,7 @@ const NavigationBar = ({ className = "" }: NavigationBarProps) => {
                   })}
 
                   {/* Add the provided image at the bottom */}
-                  <div className="mt-8 flex justify-center">
+                  <div className="mt-8 mb-8 flex justify-center">
                     <img
                       src="/mobile-nav-image-new.png"
                       alt="Arunachal Pradesh Cultural Image"

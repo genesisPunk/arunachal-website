@@ -349,7 +349,7 @@ const Home = () => {
                       Register Now
                     </button>
                   </DialogTrigger>
-                  <DialogContent className="sm:max-w-md bg-transparent border-0 shadow-none rounded-3xl">
+                  <DialogContent className="sm:max-w-md bg-gradient-to-br from-orange-50/90 via-white/95 to-green-50/90 backdrop-blur-sm border border-orange-200/30 shadow-xl rounded-3xl">
                     <DialogHeader className="text-center pb-6">
                       <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                         <svg
@@ -988,6 +988,7 @@ const Home = () => {
                   { name: "Home", path: "/" },
                   { name: "Gallery", path: "/gallery" },
                   { name: "Research Papers", path: "/research-papers" },
+                  { name: "Articles/Blogs", path: "/articles" },
                   { name: "About Us", path: "/about-us" },
                   { name: "Contact Us", path: "/contact-us" },
                   { name: "FAQ", path: "/faq" },
