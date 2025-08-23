@@ -80,16 +80,11 @@ const NavigationBar = ({ className = "" }: NavigationBarProps) => {
               >
                 <nav className="flex flex-col gap-3 mt-8">
                   {navLinks.map((link, index) => {
-                    const isEven = index % 2 === 0;
-                    const flagColorClass = isEven
-                      ? "bg-gradient-to-r from-flag-saffron-100/60 to-flag-saffron-50/40 hover:from-flag-saffron-200/70 hover:to-flag-saffron-100/50 border-flag-saffron-200/40 hover:border-flag-saffron-300/60"
-                      : "bg-gradient-to-r from-flag-green-100/60 to-flag-green-50/40 hover:from-flag-green-200/70 hover:to-flag-green-100/50 border-flag-green-200/40 hover:border-flag-green-300/60";
-
                     return (
                       <Link
                         key={link.name}
                         to={link.path}
-                        className={`px-4 py-3 text-sm font-bold text-slate-800 hover:text-flag-navy-600 rounded-xl transition-all duration-300 backdrop-blur-sm border shadow-md ${flagColorClass}`}
+                        className="px-4 py-3 text-sm font-bold text-slate-800 hover:text-orange-700 rounded-xl transition-all duration-300 backdrop-blur-sm border shadow-md bg-gradient-to-r from-orange-100/60 to-orange-50/40 hover:from-orange-200/70 hover:to-orange-100/50 border-orange-200/40 hover:border-orange-300/60"
                         onClick={() => setIsOpen(false)}
                       >
                         {link.name}
@@ -97,12 +92,12 @@ const NavigationBar = ({ className = "" }: NavigationBarProps) => {
                     );
                   })}
 
-                  {/* Add the provided image at the bottom */}
-                  <div className="mt-8 mb-8 flex justify-center">
+                  {/* Add the provided image below FAQ button */}
+                  <div className="mt-4 mb-8 flex justify-center">
                     <img
                       src="/mobile-nav-image-new.png"
                       alt="Arunachal Pradesh Cultural Image"
-                      className="w-56 h-56 object-contain brightness-110 contrast-110"
+                      className="w-44 h-44 object-contain brightness-110 contrast-110"
                     />
                   </div>
                 </nav>

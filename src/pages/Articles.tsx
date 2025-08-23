@@ -314,9 +314,9 @@ const Articles = () => {
       <section className="py-16">
         <div className="container mx-auto px-4">
           {/* Tabs and Filters */}
-          <div className="flex flex-col lg:flex-row gap-8 mb-12">
+          <div className="flex flex-col gap-6 mb-12">
             {/* Content Type Tabs */}
-            <div className="lg:w-1/3">
+            <div className="w-full">
               <Tabs
                 value={activeTab}
                 onValueChange={setActiveTab}
@@ -325,19 +325,19 @@ const Articles = () => {
                 <TabsList className="grid w-full grid-cols-3 bg-white shadow-lg border border-gray-200">
                   <TabsTrigger
                     value="all"
-                    className="text-gray-600 data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-green-500 data-[state=active]:text-white"
+                    className="text-gray-600 data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-green-500 data-[state=active]:text-white text-xs sm:text-sm"
                   >
                     All
                   </TabsTrigger>
                   <TabsTrigger
                     value="article"
-                    className="text-gray-600 data-[state=active]:bg-blue-500 data-[state=active]:text-white"
+                    className="text-gray-600 data-[state=active]:bg-blue-500 data-[state=active]:text-white text-xs sm:text-sm"
                   >
                     Articles
                   </TabsTrigger>
                   <TabsTrigger
                     value="blog"
-                    className="text-gray-600 data-[state=active]:bg-purple-500 data-[state=active]:text-white"
+                    className="text-gray-600 data-[state=active]:bg-purple-500 data-[state=active]:text-white text-xs sm:text-sm"
                   >
                     Blogs
                   </TabsTrigger>
@@ -346,8 +346,8 @@ const Articles = () => {
             </div>
 
             {/* Category Filter */}
-            <div className="lg:w-2/3">
-              <div className="flex flex-wrap gap-2">
+            <div className="w-full">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:flex lg:flex-wrap gap-2">
                 {categories.map((category) => {
                   const IconComponent = category.icon;
                   return (
@@ -361,11 +361,11 @@ const Articles = () => {
                         selectedCategory === category.id
                           ? "bg-blue-600 text-white border-0 shadow-lg"
                           : "border-gray-300 text-gray-600 hover:bg-gray-50 hover:border-blue-400"
-                      } transition-all duration-300`}
+                      } transition-all duration-300 text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2`}
                       size="sm"
                     >
-                      <IconComponent className="w-4 h-4 mr-2" />
-                      {category.name}
+                      <IconComponent className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                      <span className="truncate">{category.name}</span>
                     </Button>
                   );
                 })}
@@ -374,7 +374,7 @@ const Articles = () => {
           </div>
 
           {/* Articles Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {filteredArticles.map((article, index) => (
               <motion.div
                 key={article.id}
@@ -409,39 +409,39 @@ const Articles = () => {
                       </Badge>
                     </div>
                   </div>
-                  <CardHeader className="pb-3">
-                    <CardTitle className="text-lg group-hover:text-orange-600 transition-colors duration-300 line-clamp-2 leading-tight">
+                  <CardHeader className="pb-2 sm:pb-3 px-3 sm:px-6 pt-3 sm:pt-6">
+                    <CardTitle className="text-base sm:text-lg group-hover:text-orange-600 transition-colors duration-300 line-clamp-2 leading-tight">
                       {article.title}
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="flex-1 flex flex-col">
-                    <p className="text-gray-600 mb-4 flex-1 line-clamp-3 text-sm leading-relaxed">
+                  <CardContent className="flex-1 flex flex-col px-3 sm:px-6 pb-3 sm:pb-6">
+                    <p className="text-gray-600 mb-3 sm:mb-4 flex-1 line-clamp-3 text-xs sm:text-sm leading-relaxed">
                       {article.excerpt}
                     </p>
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between text-xs text-gray-500">
-                        <div className="flex items-center space-x-3">
+                    <div className="space-y-2 sm:space-y-3">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-xs text-gray-500 gap-2 sm:gap-0">
+                        <div className="flex items-center space-x-2 sm:space-x-3 flex-wrap">
                           <div className="flex items-center">
                             <User className="w-3 h-3 mr-1" />
-                            <span className="font-medium">
+                            <span className="font-medium text-xs">
                               {article.author}
                             </span>
                           </div>
                           <div className="flex items-center">
                             <Calendar className="w-3 h-3 mr-1" />
-                            <span>{article.date}</span>
+                            <span className="text-xs">{article.date}</span>
                           </div>
                           <div className="flex items-center">
                             <Clock className="w-3 h-3 mr-1" />
-                            <span>{article.readTime}</span>
+                            <span className="text-xs">{article.readTime}</span>
                           </div>
                         </div>
                       </div>
-                      <div className="flex items-center justify-end mt-3">
+                      <div className="flex items-center justify-end mt-2 sm:mt-3">
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="text-orange-600 hover:text-orange-700 hover:bg-orange-50 text-xs px-3 h-8"
+                          className="text-orange-600 hover:text-orange-700 hover:bg-orange-50 text-xs px-2 sm:px-3 h-7 sm:h-8"
                           onClick={() => setSelectedArticle(article)}
                         >
                           Read <ArrowRight className="w-3 h-3 ml-1" />
@@ -501,7 +501,7 @@ const Articles = () => {
         open={!!selectedArticle}
         onOpenChange={() => setSelectedArticle(null)}
       >
-        <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto bg-gradient-to-br from-orange-50/80 via-white/90 to-green-50/80 backdrop-blur-sm border border-orange-200/30 shadow-2xl rounded-xl">
+        <DialogContent className="max-w-[95vw] sm:max-w-3xl max-h-[90vh] sm:max-h-[85vh] overflow-y-auto bg-gradient-to-br from-orange-50/80 via-white/90 to-green-50/80 backdrop-blur-sm border border-orange-200/30 shadow-2xl rounded-xl mx-2 sm:mx-auto">
           {selectedArticle && (
             <>
               <DialogHeader>
