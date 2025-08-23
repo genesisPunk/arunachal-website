@@ -87,24 +87,23 @@ const Gallery = () => {
       <NavigationBar />
 
       {/* Header */}
-      <div className="bg-gradient-to-b from-orange-500 via-white to-green-500 py-20">
-        <div className="container mx-auto px-4 text-center">
-          <motion.h1
-            className="text-5xl md:text-6xl font-bold text-[#000080] mb-6"
-            initial={{ opacity: 0, y: -30 }}
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 via-white/40 to-green-500/20"></div>
+        <div className="relative container mx-auto px-4 py-20">
+          <motion.div
+            className="text-center max-w-4xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Gallery
-          </motion.h1>
-          <motion.p
-            className="text-xl text-gray-700 max-w-3xl mx-auto"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            Capturing moments of excellence, achievements, and media highlights
-          </motion.p>
+            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-orange-600 via-blue-600 to-green-600 bg-clip-text text-transparent mb-6">
+              Gallery
+            </h1>
+            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+              Capturing moments of excellence, achievements, and media
+              highlights
+            </p>
+          </motion.div>
         </div>
       </div>
 

@@ -92,14 +92,24 @@ const Partner = ({ className = "" }: PartnerProps) => {
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              Our Partners
-            </h1>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              We collaborate with various organizations to promote youth
-              development and civic engagement in Arunachal Pradesh.
-            </p>
+          <div className="relative overflow-hidden mb-12">
+            <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 via-white/40 to-green-500/20"></div>
+            <div className="relative container mx-auto px-4 py-20">
+              <motion.div
+                className="text-center max-w-4xl mx-auto"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-orange-600 via-blue-600 to-green-600 bg-clip-text text-transparent mb-6">
+                  Our Partners
+                </h1>
+                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                  We collaborate with various organizations to promote youth
+                  development and civic engagement in Arunachal Pradesh.
+                </p>
+              </motion.div>
+            </div>
           </div>
 
           {/* Partners Grid */}

@@ -3,8 +3,33 @@ import NavigationBar from "@/components/NavigationBar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { motion } from "framer-motion";
-import { Calendar, User, Download, Linkedin } from "lucide-react";
+import {
+  Calendar,
+  User,
+  Search,
+  BookOpen,
+  PenTool,
+  TrendingUp,
+  Heart,
+  Share2,
+  Eye,
+  Clock,
+  ArrowRight,
+  X,
+  Facebook,
+  Linkedin,
+  Twitter,
+} from "lucide-react";
 
 interface Article {
   id: string;
@@ -15,278 +40,340 @@ interface Article {
   category: string;
   readTime: string;
   image: string;
+  views: string;
+  likes: string;
+  type: "article" | "blog";
+  featured?: boolean;
 }
 
 const Articles = () => {
+  const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [activeTab, setActiveTab] = useState("all");
+  const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
+  const [showSubmitDialog, setShowSubmitDialog] = useState(false);
 
   const articles: Article[] = [
+    // Articles
     {
       id: "1",
-      title:
-        "Political Conscience And Political Consciousness In A Democracy: An Exploration Of An Idea Through Youth Participation",
+      title: "The Future of Youth Leadership in Northeast India",
       excerpt:
-        "This paper explores the idea of politics that the youth of Arunachal Pradesh have in terms of their understanding of political participation, the significance they attribute to being politically conscious, and the correlation between gender and politics.",
-      author: "Fango Mary Waii",
-      date: "January 15, 2024",
-      category: "governance",
-      readTime: "12 min read",
-      image: "/rr.png",
+        "Exploring how young leaders are shaping the political and social landscape of Northeast India through innovative approaches and grassroots movements.",
+      author: "Rajesh Kumar",
+      date: "March 15, 2024",
+      category: "leadership",
+      readTime: "8 min read",
+      image:
+        "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
+      views: "2.4k",
+      likes: "156",
+      type: "article",
+      featured: true,
     },
     {
       id: "2",
-      title:
-        "Student Politics in Arunachal Pradesh: Examining its Impact on Society",
+      title: "Digital Transformation in Rural Arunachal Pradesh",
       excerpt:
-        "The present study attempts to throw light on the role played by Student Politics in the state of Arunachal Pradesh and its impact on society and state politics.",
-      author: "Lokpa Tamang",
-      date: "January 10, 2024",
-      category: "governance",
-      readTime: "15 min read",
-      image: "/student-politics.jpg",
+        "How technology is bridging the gap between urban and rural communities, creating new opportunities for economic growth and social development.",
+      author: "Priya Sharma",
+      date: "March 12, 2024",
+      category: "technology",
+      readTime: "12 min read",
+      image:
+        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
+      views: "1.8k",
+      likes: "89",
+      type: "article",
     },
     {
       id: "3",
-      title:
-        "The Indispensable Role of Youth in Promoting Mental Health: A Research Perspective",
+      title: "Sustainable Tourism: A Path Forward for Arunachal",
       excerpt:
-        "This article posits youth as indispensable agents of change in mental health promotion. Their lived experiences, peer networks, and digital fluency offer unique advantages in addressing the global youth mental health crisis.",
-      author: "Dr. Jomyir Bagra",
-      date: "January 5, 2024",
-      category: "health",
-      readTime: "18 min read",
-      image: "/mental-health.jpg",
+        "Examining sustainable tourism practices that can boost the local economy while preserving the natural beauty and cultural heritage of the state.",
+      author: "Tenzin Norbu",
+      date: "March 10, 2024",
+      category: "environment",
+      readTime: "10 min read",
+      image:
+        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
+      views: "3.1k",
+      likes: "203",
+      type: "article",
     },
     {
       id: "4",
-      title:
-        "Reimagining Environmental Responsibility: A Commentary on the Youth Mission for Clean River's Efforts in Arunachal Pradesh",
+      title: "Women Entrepreneurs Breaking Barriers",
       excerpt:
-        "This commentary examines YMCR's dynamic approach to addressing plastic pollution crisis in Arunachal Pradesh through clean-up drives, policy advocacy, and educational initiatives.",
-      author: "Dr. Prem Taba",
-      date: "December 28, 2023",
-      category: "environment",
-      readTime: "14 min read",
-      image: "/environmental-responsibility.jpg",
+        "Stories of inspiring women entrepreneurs who are creating successful businesses and empowering their communities across Arunachal Pradesh.",
+      author: "Meera Patel",
+      date: "March 8, 2024",
+      category: "business",
+      readTime: "15 min read",
+      image:
+        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80",
+      views: "2.7k",
+      likes: "178",
+      type: "article",
     },
+    // Blogs
     {
       id: "5",
-      title:
-        "A Study of Youth Behaviour in Investment Decision Making: With Reference to Arunachal Pradesh",
+      title: "My Journey as a Young Activist in Itanagar",
       excerpt:
-        "This paper examines youth behavior in investment decision making to identify the most preferred investment alternatives, factors influencing youth investment decisions, and the correlation between age and gender in investment activities.",
-      author: "Myger Babla",
-      date: "December 20, 2023",
-      category: "business",
-      readTime: "16 min read",
-      image: "/investment-behavior.jpg",
+        "A personal account of organizing community events, facing challenges, and the lessons learned while advocating for youth rights in the capital city.",
+      author: "Kaling Borang",
+      date: "March 14, 2024",
+      category: "personal",
+      readTime: "6 min read",
+      image:
+        "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&q=80",
+      views: "1.2k",
+      likes: "94",
+      type: "blog",
+      featured: true,
     },
     {
       id: "6",
-      title:
-        "Exploring the Role of Youths in Promoting Waste Reduction and Recycling in Arunachal Pradesh",
+      title: "Food Adventures: Traditional Recipes with Modern Twists",
       excerpt:
-        "This study explores the contribution of youths in waste management and recycling in Arunachal Pradesh, highlighting ways through which youths can participate in encouraging sustainable waste management practices for environmental protection.",
-      author: "Priyanka Ghimire",
-      date: "December 15, 2023",
-      category: "environment",
-      readTime: "20 min read",
-      image: "/waste-reduction-recycling.jpg",
+        "Discovering the rich culinary heritage of Arunachal Pradesh and how young chefs are innovating traditional recipes for contemporary palates.",
+      author: "Nyishi Talom",
+      date: "March 11, 2024",
+      category: "culture",
+      readTime: "5 min read",
+      image:
+        "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=800&q=80",
+      views: "1.9k",
+      likes: "127",
+      type: "blog",
     },
     {
       id: "7",
-      title: "Youth in the Digital Age: Mitigating Challenges in Digital Space",
+      title: "Life Lessons from the Mountains",
       excerpt:
-        "This paper examines the challenges of the digital space including cyberbullying, misinformation, digital addiction, and privacy threats, while exploring strategies to foster a safer, more responsible digital environment for youth.",
-      author: "Dr. Sachoiba Inkah",
-      date: "December 10, 2023",
-      category: "technology",
-      readTime: "22 min read",
-      image: "/digital-age-challenges.jpg",
+        "Reflections on growing up in the hills of Arunachal Pradesh and how the mountains have shaped my perspective on life, community, and resilience.",
+      author: "Dorjee Khandu",
+      date: "March 9, 2024",
+      category: "lifestyle",
+      readTime: "7 min read",
+      image:
+        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
+      views: "2.3k",
+      likes: "165",
+      type: "blog",
     },
     {
       id: "8",
-      title:
-        "Analysing the Role of Social Media in Education and Skills Development among Youth in Arunachal Pradesh",
+      title: "Building Communities Through Art and Culture",
       excerpt:
-        "This study investigates the multifaceted role of social media platforms in education and skills development of youth in Arunachal Pradesh, examining both opportunities and challenges in the digital learning landscape.",
-      author: "Shashanka Gogoi",
-      date: "December 5, 2023",
-      category: "education",
-      readTime: "19 min read",
-      image: "/social-media-education.jpg",
-    },
-    {
-      id: "9",
-      title:
-        "Harnessing Arunachal's Natural Resources for Sustainable Economic Growth",
-      excerpt:
-        "This paper explores the strategic harnessing of Arunachal Pradesh's natural resources including hydroelectric power, forests, and minerals to drive sustainable economic growth while balancing development with environmental conservation.",
-      author: "Tongchen Jomba",
-      date: "November 30, 2023",
-      category: "economics",
-      readTime: "17 min read",
+        "How local artists and cultural enthusiasts are using creative expression to bring communities together and preserve traditional art forms.",
+      author: "Anya Taki",
+      date: "March 7, 2024",
+      category: "culture",
+      readTime: "9 min read",
       image:
-        "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80",
-    },
-    {
-      id: "10",
-      title:
-        "Exploring the Role of Government Policies in Promoting Youth Empowerment in Arunachal Pradesh",
-      excerpt:
-        "This paper assesses the position that government policies have taken in empowering youths in Arunachal Pradesh, examining measures in education, employment, skills development, social inclusion, and entrepreneurship support.",
-      author: "Saurav Bhaumik",
-      date: "November 25, 2023",
-      category: "governance",
-      readTime: "21 min read",
-      image:
-        "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=800&q=80",
-    },
-    {
-      id: "11",
-      title:
-        "From Protest to Policy: Examining Youth Participation in Political Decision-Making in India",
-      excerpt:
-        "This paper delves into the evolving role of youth in governance, spotlighting both challenges and breakthroughs in political participation. It highlights emerging young leaders and advocates for lower candidacy age, legislative youth quotas, and stronger political education.",
-      author: "Subham Tripathy",
-      date: "November 20, 2023",
-      category: "governance",
-      readTime: "25 min read",
-      image:
-        "https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?w=800&q=80",
-    },
-    {
-      id: "12",
-      title:
-        "Harnessing Youth Potential through Skill Development and Entrepreneurship in Arunachal Pradesh",
-      excerpt:
-        "This chapter examines the need and strategy for empowering young people in Arunachal Pradesh via entrepreneurship and skill development, two important pillars of long-term socioeconomic change, addressing structural challenges in employment and skills.",
-      author: "Vanshika Marwaha",
-      date: "November 15, 2023",
-      category: "business",
-      readTime: "23 min read",
-      image:
-        "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
-    },
-    {
-      id: "13",
-      title:
-        "Fences and Forgotten Ties: Reimagining Border Policy After the Free Movement Regime's End in Arunachal Pradesh",
-      excerpt:
-        "This opinion piece critiques the militarized approach to border management following the termination of the Free Movement Regime, advocating for a holistic policy that balances security with tribal heritage, environmental integrity, and regional cooperation.",
-      author: "Yagyaj",
-      date: "November 10, 2023",
-      category: "governance",
-      readTime: "28 min read",
-      image:
-        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80",
-    },
-    {
-      id: "14",
-      title:
-        "Swipe, Scroll, and Mislead: Insights from the Youths on Digital Addiction and Misinformation in Arunachal Pradesh",
-      excerpt:
-        "This study examines the dual challenge of digital addiction and the spread of misinformation among youth in Arunachal Pradesh, highlighting critical thinking as essential competencies for the state's youth in the digital age.",
-      author: "Mudang Onju",
-      date: "November 5, 2023",
-      category: "technology",
-      readTime: "26 min read",
-      image:
-        "https://images.unsplash.com/photo-1611605698335-8b1569810432?w=800&q=80",
+        "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=800&q=80",
+      views: "1.6k",
+      likes: "112",
+      type: "blog",
     },
   ];
 
   const categories = [
-    { id: "all", name: "All Articles" },
-    { id: "governance", name: "Governance" },
-    { id: "health", name: "Health" },
-    { id: "environment", name: "Environment" },
-    { id: "business", name: "Business" },
-    { id: "technology", name: "Technology" },
-    { id: "education", name: "Education" },
-    { id: "economics", name: "Economics" },
+    { id: "all", name: "All Categories", icon: BookOpen },
+    { id: "leadership", name: "Leadership", icon: TrendingUp },
+    { id: "technology", name: "Technology", icon: PenTool },
+    { id: "environment", name: "Environment", icon: Heart },
+    { id: "business", name: "Business", icon: TrendingUp },
+    { id: "personal", name: "Personal", icon: User },
+    { id: "culture", name: "Culture", icon: BookOpen },
+    { id: "lifestyle", name: "Lifestyle", icon: Heart },
   ];
 
-  const filteredArticles =
-    selectedCategory === "all"
-      ? articles
-      : articles.filter((article) => article.category === selectedCategory);
+  const filteredArticles = articles.filter((article) => {
+    const matchesSearch =
+      article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      article.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      article.author.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory =
+      selectedCategory === "all" || article.category === selectedCategory;
+    const matchesTab = activeTab === "all" || article.type === activeTab;
+
+    return matchesSearch && matchesCategory && matchesTab;
+  });
+
+  const featuredArticles = articles.filter((article) => article.featured);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
       <NavigationBar />
 
-      {/* Header */}
-      <div className="bg-gradient-to-b from-orange-500 via-white to-green-500 py-16">
-        <div className="container mx-auto px-4 text-center">
-          <motion.h1
-            className="text-4xl md:text-5xl font-bold text-[#000080] mb-4"
-            initial={{ opacity: 0, y: -20 }}
+      {/* Hero Section */}
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 via-white/40 to-green-500/20"></div>
+        <div className="relative container mx-auto px-4 py-20">
+          <motion.div
+            className="text-center max-w-4xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Articles
-          </motion.h1>
-          <motion.p
-            className="text-lg text-gray-700 max-w-2xl mx-auto"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            Explore research papers and academic contributions by Arunachal
-            Pradesh's youth scholars
-          </motion.p>
+            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-orange-600 via-blue-600 to-green-600 bg-clip-text text-transparent mb-6">
+              Articles & Blogs
+            </h1>
+            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+              Discover insights, stories, and perspectives from Arunachal
+              Pradesh's vibrant youth community
+            </p>
+          </motion.div>
         </div>
       </div>
 
-      {/* Research Paper Submission Message */}
-      <section className="py-8 bg-blue-50">
-        <div className="container mx-auto px-4">
-          <div className="bg-blue-100 border border-blue-200 rounded-lg p-6 max-w-2xl mx-auto text-center">
-            <h3 className="text-lg font-semibold text-blue-800 mb-2">
-              Submit Your Research Paper
-            </h3>
-            <p className="text-blue-700">
-              If you want to show your research paper here, please reach out to
-              us at{" "}
-              <a
-                href="mailto:Arunachalyouthparliament@gmail.com"
-                className="font-medium underline hover:text-blue-900"
-              >
-                Arunachalyouthparliament@gmail.com
-              </a>
-            </p>
+      {/* Featured Content */}
+      {featuredArticles.length > 0 && (
+        <section className="py-16 bg-white/50 backdrop-blur-sm">
+          <div className="container mx-auto px-4">
+            <motion.h2
+              className="text-3xl font-bold text-center mb-12 text-gray-800"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6 }}
+            >
+              Featured Content
+            </motion.h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {featuredArticles.map((article, index) => (
+                <motion.div
+                  key={article.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                >
+                  <Card className="group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-gradient-to-br from-white to-gray-50 border-0 shadow-lg overflow-hidden">
+                    <div className="relative aspect-video overflow-hidden">
+                      <img
+                        src={article.image}
+                        alt={article.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute top-4 left-4">
+                        <Badge
+                          className={`${article.type === "article" ? "bg-blue-500" : "bg-purple-500"} text-white font-semibold px-3 py-1`}
+                        >
+                          {article.type === "article" ? "Article" : "Blog"}
+                        </Badge>
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-xl group-hover:text-orange-600 transition-colors duration-300 line-clamp-2">
+                        {article.title}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-gray-600 mb-4 line-clamp-3">
+                        {article.excerpt}
+                      </p>
+                      <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                        <div className="flex items-center space-x-4">
+                          <div className="flex items-center">
+                            <User className="w-4 h-4 mr-1" />
+                            <span>{article.author}</span>
+                          </div>
+                          <div className="flex items-center">
+                            <Calendar className="w-4 h-4 mr-1" />
+                            <span>{article.date}</span>
+                          </div>
+                          <div className="flex items-center">
+                            <Clock className="w-4 h-4 mr-1" />
+                            <span>{article.readTime}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-end">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="text-orange-600 hover:text-orange-700 hover:bg-orange-50"
+                          onClick={() => setSelectedArticle(article)}
+                        >
+                          Read More <ArrowRight className="w-4 h-4 ml-1" />
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* Category Filter */}
-      <section className="py-8 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-wrap justify-center gap-2">
-            {categories.map((category) => (
-              <Button
-                key={category.id}
-                variant={
-                  selectedCategory === category.id ? "default" : "outline"
-                }
-                onClick={() => setSelectedCategory(category.id)}
-                className={`${
-                  selectedCategory === category.id
-                    ? "bg-orange-500 hover:bg-orange-600 text-white"
-                    : "border-orange-500 text-orange-500 hover:bg-orange-50"
-                }`}
-              >
-                {category.name}
-              </Button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Articles Grid */}
+      {/* Main Content */}
       <section className="py-16">
         <div className="container mx-auto px-4">
+          {/* Tabs and Filters */}
+          <div className="flex flex-col lg:flex-row gap-8 mb-12">
+            {/* Content Type Tabs */}
+            <div className="lg:w-1/3">
+              <Tabs
+                value={activeTab}
+                onValueChange={setActiveTab}
+                className="w-full"
+              >
+                <TabsList className="grid w-full grid-cols-3 bg-white shadow-lg border border-gray-200">
+                  <TabsTrigger
+                    value="all"
+                    className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-green-500 data-[state=active]:text-white"
+                  >
+                    All
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="article"
+                    className="data-[state=active]:bg-blue-500 data-[state=active]:text-white"
+                  >
+                    Articles
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="blog"
+                    className="data-[state=active]:bg-purple-500 data-[state=active]:text-white"
+                  >
+                    Blogs
+                  </TabsTrigger>
+                </TabsList>
+              </Tabs>
+            </div>
+
+            {/* Category Filter */}
+            <div className="lg:w-2/3">
+              <div className="flex flex-wrap gap-2">
+                {categories.map((category) => {
+                  const IconComponent = category.icon;
+                  return (
+                    <Button
+                      key={category.id}
+                      variant={
+                        selectedCategory === category.id ? "default" : "outline"
+                      }
+                      onClick={() => setSelectedCategory(category.id)}
+                      className={`${
+                        selectedCategory === category.id
+                          ? "bg-blue-600 text-white border-0 shadow-lg"
+                          : "border-gray-300 text-gray-600 hover:bg-gray-50 hover:border-blue-400"
+                      } transition-all duration-300`}
+                      size="sm"
+                    >
+                      <IconComponent className="w-4 h-4 mr-2" />
+                      {category.name}
+                    </Button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          {/* Articles Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredArticles.map((article, index) => (
               <motion.div
@@ -295,89 +382,306 @@ const Articles = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Card className="h-full hover:shadow-lg transition-shadow duration-300 group flex flex-col bg-orange-50">
-                  <div className="aspect-video overflow-hidden">
+                <Card className="group h-full hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 bg-white border-0 shadow-md overflow-hidden">
+                  <div className="relative aspect-video overflow-hidden">
                     <img
                       src={article.image}
                       alt={article.title}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                  </div>
-                  <CardHeader>
-                    <div className="flex items-center justify-between mb-2">
-                      <Badge className="bg-green-500 text-white capitalize">
+                    <div className="absolute top-3 left-3">
+                      <Badge
+                        className={`${
+                          article.type === "article"
+                            ? "bg-blue-500 hover:bg-blue-600"
+                            : "bg-purple-500 hover:bg-purple-600"
+                        } text-white font-medium px-2 py-1 text-xs`}
+                      >
+                        {article.type === "article" ? "Article" : "Blog"}
+                      </Badge>
+                    </div>
+                    <div className="absolute top-3 right-3">
+                      <Badge
+                        variant="outline"
+                        className="bg-white/90 text-gray-700 border-0 text-xs"
+                      >
                         {article.category}
                       </Badge>
-                      <span className="text-sm text-gray-500">
-                        {article.readTime}
-                      </span>
                     </div>
-                    <CardTitle className="text-xl group-hover:text-orange-500 transition-colors duration-300">
+                  </div>
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-lg group-hover:text-orange-600 transition-colors duration-300 line-clamp-2 leading-tight">
                       {article.title}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="flex-1 flex flex-col">
-                    <p className="text-gray-600 mb-4 flex-1">
+                    <p className="text-gray-600 mb-4 flex-1 line-clamp-3 text-sm leading-relaxed">
                       {article.excerpt}
                     </p>
-                    <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                      <div className="flex items-center">
-                        <User className="w-4 h-4 mr-1" />
-                        <span>{article.author}</span>
-                        <a
-                          href={`https://linkedin.com/in/${article.author.toLowerCase().replace(/\s+/g, "-").replace(/\./g, "")}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="ml-2 text-blue-600 hover:text-blue-800"
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between text-xs text-gray-500">
+                        <div className="flex items-center space-x-3">
+                          <div className="flex items-center">
+                            <User className="w-3 h-3 mr-1" />
+                            <span className="font-medium">
+                              {article.author}
+                            </span>
+                          </div>
+                          <div className="flex items-center">
+                            <Calendar className="w-3 h-3 mr-1" />
+                            <span>{article.date}</span>
+                          </div>
+                          <div className="flex items-center">
+                            <Clock className="w-3 h-3 mr-1" />
+                            <span>{article.readTime}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-end mt-3">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="text-orange-600 hover:text-orange-700 hover:bg-orange-50 text-xs px-3 h-8"
+                          onClick={() => setSelectedArticle(article)}
                         >
-                          <Linkedin className="w-4 h-4" />
-                        </a>
+                          Read <ArrowRight className="w-3 h-3 ml-1" />
+                        </Button>
                       </div>
-                      <div className="flex items-center">
-                        <Calendar className="w-4 h-4 mr-1" />
-                        <span>{article.date}</span>
-                      </div>
-                    </div>
-                    <div className="mt-auto">
-                      <Button
-                        className="w-full bg-orange-500 hover:bg-orange-600 text-white group"
-                        onClick={() => {
-                          const pdfFiles = {
-                            "1": "/1. Fango Mary Waii.pdf",
-                            "2": "/2. Lokpa Tamang.pdf",
-                            "3": "/3. Dr Jomyir Bagra.pdf",
-                            "4": "/4. Dr Prem Taba.pdf",
-                            "5": "/5. Myger Babla.pdf",
-                            "6": "/6. Priyanka Ghimire.pdf",
-                            "7": "/7. Sachoiba Inka.pdf",
-                            "8": "/8. Sashanka Gogoi .pdf",
-                            "9": "/9. Tongchen Jomba.pdf",
-                            "10": "/10. Saurav Baumhik.pdf",
-                            "11": "/11. Subham Tripathy.pdf",
-                            "12": "/12. Vanishka Marwaha.pdf",
-                            "13": "/13. Yagyaj.pdf",
-                            "14": "/14. Mudang Onju.pdf",
-                          };
-                          const link = document.createElement("a");
-                          link.href =
-                            pdfFiles[article.id as keyof typeof pdfFiles];
-                          link.download = `${article.author.replace(/[^a-zA-Z0-9]/g, "_")}_Research_Paper.pdf`;
-                          document.body.appendChild(link);
-                          link.click();
-                          document.body.removeChild(link);
-                        }}
-                      >
-                        <span>Download Research Paper</span>
-                        <Download className="w-4 h-4 ml-2" />
-                      </Button>
                     </div>
                   </CardContent>
                 </Card>
               </motion.div>
             ))}
           </div>
+
+          {/* No Results */}
+          {filteredArticles.length === 0 && (
+            <div className="text-center py-16">
+              <div className="text-gray-400 mb-4">
+                <BookOpen className="w-16 h-16 mx-auto mb-4" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-600 mb-2">
+                No content found
+              </h3>
+              <p className="text-gray-500">
+                Try adjusting your search or filter criteria
+              </p>
+            </div>
+          )}
         </div>
       </section>
+
+      {/* Call to Action */}
+      <section className="py-16 bg-gradient-to-r from-orange-500 via-white to-green-500">
+        <div className="container mx-auto px-4 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">
+              Share Your Story
+            </h2>
+            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+              Have an inspiring story or valuable insights to share? Join our
+              community of writers and contribute to the conversation.
+            </p>
+            <Button
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+              onClick={() => setShowSubmitDialog(true)}
+            >
+              Submit Your Article
+            </Button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Article Detail Dialog */}
+      <Dialog
+        open={!!selectedArticle}
+        onOpenChange={() => setSelectedArticle(null)}
+      >
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-gradient-to-br from-orange-50/80 via-white/90 to-green-50/80 backdrop-blur-sm border border-orange-200/30 shadow-2xl rounded-xl">
+          {selectedArticle && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="text-2xl font-bold text-gray-900 pr-8">
+                  {selectedArticle.title}
+                </DialogTitle>
+              </DialogHeader>
+              <div className="space-y-6">
+                <div className="relative aspect-video overflow-hidden rounded-lg">
+                  <img
+                    src={selectedArticle.image}
+                    alt={selectedArticle.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <Badge
+                      className={`${
+                        selectedArticle.type === "article"
+                          ? "bg-blue-500"
+                          : "bg-purple-500"
+                      } text-white font-semibold px-3 py-1`}
+                    >
+                      {selectedArticle.type === "article" ? "Article" : "Blog"}
+                    </Badge>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between text-sm text-gray-700 border-b border-gray-300/50 pb-4">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center">
+                      <User className="w-4 h-4 mr-2 text-gray-600" />
+                      <span className="font-medium text-gray-800">
+                        {selectedArticle.author}
+                      </span>
+                    </div>
+                    <div className="flex items-center">
+                      <Calendar className="w-4 h-4 mr-2 text-gray-600" />
+                      <span className="text-gray-700">
+                        {selectedArticle.date}
+                      </span>
+                    </div>
+                    <div className="flex items-center">
+                      <Clock className="w-4 h-4 mr-2 text-gray-600" />
+                      <span className="text-gray-700">
+                        {selectedArticle.readTime}
+                      </span>
+                    </div>
+                  </div>
+                  <Badge
+                    variant="outline"
+                    className="capitalize border-gray-400 text-gray-700 bg-white/60"
+                  >
+                    {selectedArticle.category}
+                  </Badge>
+                </div>
+
+                <div className="prose max-w-none">
+                  <p className="text-lg text-gray-800 leading-relaxed mb-6">
+                    {selectedArticle.excerpt}
+                  </p>
+
+                  <div className="space-y-4 text-gray-700">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </p>
+                    <p>
+                      Duis aute irure dolor in reprehenderit in voluptate velit
+                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                      sint occaecat cupidatat non proident, sunt in culpa qui
+                      officia deserunt mollit anim id est laborum.
+                    </p>
+                    <p>
+                      Sed ut perspiciatis unde omnis iste natus error sit
+                      voluptatem accusantium doloremque laudantium, totam rem
+                      aperiam, eaque ipsa quae ab illo inventore veritatis et
+                      quasi architecto beatae vitae dicta sunt explicabo.
+                    </p>
+                    <p>
+                      Nemo enim ipsam voluptatem quia voluptas sit aspernatur
+                      aut odit aut fugit, sed quia consequuntur magni dolores
+                      eos qui ratione voluptatem sequi nesciunt.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Share Buttons */}
+                <div className="border-t border-gray-300/50 pt-6">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                    Share this {selectedArticle.type}
+                  </h3>
+                  <div className="flex space-x-4">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="flex items-center space-x-2 bg-blue-600 text-white border-blue-600 hover:bg-blue-700 hover:border-blue-700"
+                      onClick={() => {
+                        const url = encodeURIComponent(window.location.href);
+                        const text = encodeURIComponent(selectedArticle.title);
+                        window.open(
+                          `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`,
+                          "_blank",
+                        );
+                      }}
+                    >
+                      <Facebook className="w-4 h-4" />
+                      <span>Facebook</span>
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="flex items-center space-x-2 bg-blue-700 text-white border-blue-700 hover:bg-blue-800 hover:border-blue-800"
+                      onClick={() => {
+                        const url = encodeURIComponent(window.location.href);
+                        const text = encodeURIComponent(selectedArticle.title);
+                        window.open(
+                          `https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${text}`,
+                          "_blank",
+                        );
+                      }}
+                    >
+                      <Linkedin className="w-4 h-4" />
+                      <span>LinkedIn</span>
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="flex items-center space-x-2 bg-blue-400 text-white border-blue-400 hover:bg-blue-500 hover:border-blue-500"
+                      onClick={() => {
+                        const url = encodeURIComponent(window.location.href);
+                        const text = encodeURIComponent(selectedArticle.title);
+                        window.open(
+                          `https://twitter.com/intent/tweet?url=${url}&text=${text}`,
+                          "_blank",
+                        );
+                      }}
+                    >
+                      <Twitter className="w-4 h-4" />
+                      <span>Twitter</span>
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Submit Article Dialog */}
+      <Dialog open={showSubmitDialog} onOpenChange={setShowSubmitDialog}>
+        <DialogContent className="max-w-md bg-gradient-to-br from-orange-50/90 via-white/95 to-green-50/90 backdrop-blur-sm border border-orange-200/30 shadow-xl rounded-xl">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold text-gray-800">
+              Submit Your Article
+            </DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <p className="text-gray-700 leading-relaxed">
+              If you want to feature your article or blog here, please reach out
+              to us at{" "}
+              <a
+                href="mailto:Arunachalyouthparliament@gmail.com"
+                className="text-blue-600 hover:text-blue-700 font-medium underline"
+              >
+                Arunachalyouthparliament@gmail.com
+              </a>
+            </p>
+            <div className="flex justify-end">
+              <Button
+                onClick={() => setShowSubmitDialog(false)}
+                className="bg-blue-600 hover:bg-blue-700 text-white"
+              >
+                Got it
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

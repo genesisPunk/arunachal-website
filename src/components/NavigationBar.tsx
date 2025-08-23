@@ -16,6 +16,7 @@ const NavigationBar = ({ className = "" }: NavigationBarProps) => {
     { name: "Home", path: "/" },
     { name: "Gallery", path: "/gallery" },
     { name: "Research Papers", path: "/research-papers" },
+    { name: "Articles", path: "/articles" },
     { name: "About Us", path: "/about-us" },
     { name: "Contact Us", path: "/contact-us" },
     { name: "FAQ", path: "/faq" },
@@ -75,15 +76,20 @@ const NavigationBar = ({ className = "" }: NavigationBarProps) => {
               </SheetTrigger>
               <SheetContent
                 side="right"
-                className="w-[300px] sm:w-[400px] bg-white/30 backdrop-blur-xl border-0 shadow-2xl"
+                className="w-[300px] sm:w-[400px] bg-gradient-to-b from-flag-saffron-100/80 via-flag-white-200/90 to-flag-green-100/80 backdrop-blur-xl border-0 shadow-2xl"
               >
                 <nav className="flex flex-col gap-3 mt-8">
                   {navLinks.map((link, index) => {
+                    const isEven = index % 2 === 0;
+                    const flagColorClass = isEven
+                      ? "bg-gradient-to-r from-flag-saffron-100/60 to-flag-saffron-50/40 hover:from-flag-saffron-200/70 hover:to-flag-saffron-100/50 border-flag-saffron-200/40 hover:border-flag-saffron-300/60"
+                      : "bg-gradient-to-r from-flag-green-100/60 to-flag-green-50/40 hover:from-flag-green-200/70 hover:to-flag-green-100/50 border-flag-green-200/40 hover:border-flag-green-300/60";
+
                     return (
                       <Link
                         key={link.name}
                         to={link.path}
-                        className="px-4 py-3 text-sm font-bold text-slate-900 hover:text-blue-800 hover:bg-white/40 rounded-xl transition-all duration-300 backdrop-blur-sm border border-white/30 hover:border-white/50 shadow-lg bg-white/20"
+                        className={`px-4 py-3 text-sm font-bold text-slate-800 hover:text-flag-navy-600 rounded-xl transition-all duration-300 backdrop-blur-sm border shadow-md ${flagColorClass}`}
                         onClick={() => setIsOpen(false)}
                       >
                         {link.name}

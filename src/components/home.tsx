@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import NavigationBar from "./NavigationBar";
 import AnnouncementSection from "./AnnouncementSection";
 import SpeakersCarousel from "./SpeakersCarousel";
@@ -88,7 +88,6 @@ const InitiativeCard = ({
 };
 
 const Home = () => {
-  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation Bar */}
@@ -258,8 +257,8 @@ const Home = () => {
                   />
                 </svg>
               </a>
-              <Link
-                to="/about-us"
+              <a
+                href="/about-us"
                 className="inline-flex items-center justify-center text-xs sm:text-sm md:text-base py-2 sm:py-2.5 md:py-3 px-3 sm:px-4 md:px-6 bg-white/90 backdrop-blur-sm text-[#000080] font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border-2 border-[#000080]/20 hover:border-[#000080]/40 hover:bg-white"
               >
                 <span>Learn More</span>
@@ -276,7 +275,7 @@ const Home = () => {
                     d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
                   />
                 </svg>
-              </Link>
+              </a>
             </motion.div>
           </div>
         </div>
@@ -350,7 +349,7 @@ const Home = () => {
                       Register Now
                     </button>
                   </DialogTrigger>
-                  <DialogContent className="sm:max-w-md bg-white/95 backdrop-blur-xl border-0 shadow-2xl rounded-3xl">
+                  <DialogContent className="sm:max-w-md bg-transparent border-0 shadow-none rounded-3xl">
                     <DialogHeader className="text-center pb-6">
                       <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                         <svg
@@ -426,7 +425,7 @@ const Home = () => {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{ duration: 0.8, delay: index * 0.2 }}
                   whileHover={{ y: -10, scale: 1.02 }}
-                  onClick={() => navigate("/gallery")}
+                  onClick={() => (window.location.href = "/gallery")}
                 >
                   {/* Background Gradient */}
                   <div className="absolute inset-0 bg-gradient-to-br from-orange-400/20 via-transparent to-green-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
@@ -461,7 +460,7 @@ const Home = () => {
               transition={{ duration: 0.8, delay: 0.8 }}
             >
               <motion.button
-                onClick={() => navigate("/gallery")}
+                onClick={() => (window.location.href = "/gallery")}
                 className="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-orange-500 via-orange-600 to-green-600 text-white font-bold text-lg rounded-full shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -834,7 +833,12 @@ const Home = () => {
                       src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D100089994003445&tabs=timeline&width=350&height=480&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
                       width="100%"
                       height="480"
-                      style={{ border: "none", overflow: "hidden", width: "100%", maxWidth: "100%" }}
+                      style={{
+                        border: "none",
+                        overflow: "hidden",
+                        width: "100%",
+                        maxWidth: "100%",
+                      }}
                       scrolling="no"
                       frameBorder="0"
                       allowFullScreen={true}
@@ -895,12 +899,12 @@ const Home = () => {
             >
               Contact Us
             </Link>
-            <Link
-              to="/about-us"
+            <a
+              href="/about-us"
               className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-md font-medium hover:bg-white hover:text-blue-800 transition duration-300"
             >
               Learn More
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -989,12 +993,12 @@ const Home = () => {
                   { name: "FAQ", path: "/faq" },
                 ].map((link) => (
                   <li key={link.name}>
-                    <Link
-                      to={link.path}
+                    <a
+                      href={link.path}
                       className="text-slate-300 hover:text-white transition-colors"
                     >
                       {link.name}
-                    </Link>
+                    </a>
                   </li>
                 ))}
               </ul>

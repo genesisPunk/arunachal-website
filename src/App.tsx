@@ -3,6 +3,7 @@ import { useRoutes, Routes, Route, useNavigate } from "react-router-dom";
 import Home from "./components/home";
 import Gallery from "./pages/Gallery";
 import ResearchPapers from "./pages/ResearchPapers";
+import Articles from "./pages/Articles";
 import FAQ from "./pages/FAQ";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
@@ -31,6 +32,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/research-papers" element={<ResearchPapers />} />
+          <Route path="/articles" element={<Articles />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/faq" element={<FAQ />} />
