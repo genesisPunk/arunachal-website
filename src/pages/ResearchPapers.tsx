@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-import { Calendar, User, Download, Linkedin, Eye, BookOpen } from "lucide-react";
+import { Calendar, User, Download, Linkedin } from "lucide-react";
 
 interface Article {
   id: string;
@@ -19,7 +19,6 @@ interface Article {
 
 const ResearchPapers = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const [selectedPaper, setSelectedPaper] = useState<Article | null>(null);
 
   const articles: Article[] = [
     {
@@ -99,7 +98,7 @@ const ResearchPapers = () => {
       title: "Youth in the Digital Age: Mitigating Challenges in Digital Space",
       excerpt:
         "This paper examines the challenges of the digital space including cyberbullying, misinformation, digital addiction, and privacy threats, while exploring strategies to foster a safer, more responsible digital environment for youth.",
-      author: "Sachoiba Inka",
+      author: "Dr. Sachoiba Inkah",
       date: "December 10, 2023",
       category: "technology",
       readTime: "22 min read",
@@ -111,7 +110,7 @@ const ResearchPapers = () => {
         "Analysing the Role of Social Media in Education and Skills Development among Youth in Arunachal Pradesh",
       excerpt:
         "This study investigates the multifaceted role of social media platforms in education and skills development of youth in Arunachal Pradesh, examining both opportunities and challenges in the digital learning landscape.",
-      author: "Sashanka Gogoi",
+      author: "Shashanka Gogoi",
       date: "December 5, 2023",
       category: "education",
       readTime: "19 min read",
@@ -136,7 +135,7 @@ const ResearchPapers = () => {
         "Exploring the Role of Government Policies in Promoting Youth Empowerment in Arunachal Pradesh",
       excerpt:
         "This paper assesses the position that government policies have taken in empowering youths in Arunachal Pradesh, examining measures in education, employment, skills development, social inclusion, and entrepreneurship support.",
-      author: "Saurav Baumhik",
+      author: "Saurav Bhaumik",
       date: "November 25, 2023",
       category: "governance",
       readTime: "21 min read",
@@ -162,7 +161,7 @@ const ResearchPapers = () => {
         "Harnessing Youth Potential through Skill Development and Entrepreneurship in Arunachal Pradesh",
       excerpt:
         "This chapter examines the need and strategy for empowering young people in Arunachal Pradesh via entrepreneurship and skill development, two important pillars of long-term socioeconomic change, addressing structural challenges in employment and skills.",
-      author: "Vanishka Marwaha",
+      author: "Vanshika Marwaha",
       date: "November 15, 2023",
       category: "business",
       readTime: "23 min read",
@@ -212,12 +211,6 @@ const ResearchPapers = () => {
     selectedCategory === "all"
       ? articles
       : articles.filter((article) => article.category === selectedCategory);
-
-  const getRelatedPapers = (currentPaper: Article) => {
-    return articles
-      .filter(article => article.category === currentPaper.category && article.id !== currentPaper.id)
-      .slice(0, 3);
-  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -289,38 +282,6 @@ const ResearchPapers = () => {
         </div>
       </section>
 
-      {/* Research Papers Statistics */}
-      <section className="py-8 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600 mb-2">
-                {articles.length}
-              </div>
-              <div className="text-sm text-gray-600">Total Papers</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-green-600 mb-2">
-                {new Set(articles.map(article => article.author)).size}
-              </div>
-              <div className="text-sm text-gray-600">Unique Authors</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-orange-600 mb-2">
-                {new Set(articles.map(article => article.category)).size}
-              </div>
-              <div className="text-sm text-gray-600">Research Categories</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-purple-600 mb-2">
-                {articles.filter(article => article.category === 'governance').length}
-              </div>
-              <div className="text-sm text-gray-600">Governance Papers</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Research Papers Grid */}
       <section className="py-16">
         <div className="container mx-auto px-4">
@@ -375,53 +336,43 @@ const ResearchPapers = () => {
                         <span>{article.date}</span>
                       </div>
                     </div>
-                    <div className="mt-auto space-y-2">
-                      <div className="flex gap-2">
-                        <Button
-                          variant="outline"
-                          className="flex-1 border-blue-300 text-blue-700 hover:bg-blue-50"
-                          onClick={() => setSelectedPaper(article)}
-                        >
-                          <Eye className="w-4 h-4 mr-2" />
-                          <span>Preview</span>
-                        </Button>
-                        <Button
-                          className="flex-1 bg-orange-500 hover:bg-orange-600 text-white group"
-                          onClick={() => {
-                            const pdfFiles = {
-                              "1": "/1. Fango Mary Waii.pdf",
-                              "2": "/2. Lokpa Tamang.pdf",
-                              "3": "/3. Dr Jomyir Bagra.pdf",
-                              "4": "/4. Dr Prem Taba.pdf",
-                              "5": "/5. Myger Babla.pdf",
-                              "6": "/6. Priyanka Ghimire.pdf",
-                              "7": "/7. Sachoiba Inka.pdf",
-                              "8": "/8. Sashanka Gogoi .pdf",
-                              "9": "/9. Tongchen Jomba.pdf",
-                              "10": "/10. Saurav Baumhik.pdf",
-                              "11": "/11. Subham Tripathy.pdf",
-                              "12": "/12. Vanishka Marwaha.pdf",
-                              "13": "/13. Yagyaj.pdf",
-                              "14": "/14. Mudang Onju.pdf",
-                            };
-                            const pdfPath =
-                              pdfFiles[article.id as keyof typeof pdfFiles];
-                            if (pdfPath) {
-                              // Always open in new tab
-                              window.open(
-                                pdfPath,
-                                "_blank",
-                                "noopener,noreferrer",
-                              );
-                            } else {
-                              alert("Research paper not available for download.");
-                            }
-                          }}
-                        >
-                          <Download className="w-4 h-4 mr-2" />
-                          <span>Download</span>
-                        </Button>
-                      </div>
+                    <div className="mt-auto">
+                      <Button
+                        className="w-full bg-orange-500 hover:bg-orange-600 text-white group"
+                        onClick={() => {
+                          const pdfFiles = {
+                            "1": "/1. Fango Mary Waii.pdf",
+                            "2": "/2. Lokpa Tamang.pdf",
+                            "3": "/3. Dr Jomyir Bagra.pdf",
+                            "4": "/4. Dr Prem Taba.pdf",
+                            "5": "/5. Myger Babla.pdf",
+                            "6": "/6. Priyanka Ghimire.pdf",
+                            "7": "/7. Sachoiba Inka.pdf",
+                            "8": "/8. Sashanka Gogoi .pdf",
+                            "9": "/9. Tongchen Jomba.pdf",
+                            "10": "/10. Saurav Baumhik.pdf",
+                            "11": "/11. Subham Tripathy.pdf",
+                            "12": "/12. Vanishka Marwaha.pdf",
+                            "13": "/13. Yagyaj.pdf",
+                            "14": "/14. Mudang Onju.pdf",
+                          };
+                          const pdfPath =
+                            pdfFiles[article.id as keyof typeof pdfFiles];
+                          if (pdfPath) {
+                            // Always open in new tab
+                            window.open(
+                              pdfPath,
+                              "_blank",
+                              "noopener,noreferrer",
+                            );
+                          } else {
+                            alert("Research paper not available for download.");
+                          }
+                        }}
+                      >
+                        <span>Download Research Paper</span>
+                        <Download className="w-4 h-4 ml-2" />
+                      </Button>
                     </div>
                   </CardContent>
                 </Card>
@@ -430,176 +381,6 @@ const ResearchPapers = () => {
           </div>
         </div>
       </section>
-
-      {/* Detailed Preview Modal */}
-      {selectedPaper && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
-          onClick={() => setSelectedPaper(null)}
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="p-6">
-              <div className="flex justify-between items-start mb-6">
-                <div>
-                  <Badge className="bg-green-500 text-white capitalize mb-3">
-                    {selectedPaper.category}
-                  </Badge>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                    {selectedPaper.title}
-                  </h2>
-                </div>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setSelectedPaper(null)}
-                  className="text-gray-500 hover:text-gray-700"
-                >
-                  ✕
-                </Button>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-6 mb-6">
-                <div>
-                  <img
-                    src={selectedPaper.image}
-                    alt={selectedPaper.title}
-                    className="w-full h-64 object-cover rounded-lg"
-                  />
-                </div>
-                <div>
-                  <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                    <div className="flex items-center">
-                      <User className="w-4 h-4 mr-1" />
-                      <span>{selectedPaper.author}</span>
-                      <a
-                        href={`https://linkedin.com/in/${selectedPaper.author.toLowerCase().replace(/\s+/g, "-").replace(/\./g, "")}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="ml-2 text-blue-600 hover:text-blue-800"
-                      >
-                        <Linkedin className="w-4 h-4" />
-                      </a>
-                    </div>
-                    <div className="flex items-center">
-                      <Calendar className="w-4 h-4 mr-1" />
-                      <span>{selectedPaper.date}</span>
-                    </div>
-                  </div>
-                  <p className="text-gray-600 leading-relaxed mb-4">
-                    {selectedPaper.excerpt}
-                  </p>
-                  <div className="flex items-center text-sm text-gray-500">
-                    <BookOpen className="w-4 h-4 mr-1" />
-                    <span>{selectedPaper.readTime}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Related Papers */}
-              <div className="border-t pt-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                  Related Research Papers
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {getRelatedPapers(selectedPaper).map((relatedPaper) => (
-                    <Card key={relatedPaper.id} className="hover:shadow-md transition-shadow">
-                      <CardContent className="p-4">
-                        <h4 className="font-medium text-sm text-gray-900 mb-2 line-clamp-2">
-                          {relatedPaper.title}
-                        </h4>
-                        <p className="text-xs text-gray-500 mb-2">
-                          By {relatedPaper.author}
-                        </p>
-                        <div className="flex gap-2">
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            onClick={() => setSelectedPaper(relatedPaper)}
-                            className="text-xs"
-                          >
-                            View
-                          </Button>
-                          <Button
-                            size="sm"
-                            onClick={() => {
-                              const pdfFiles = {
-                                "1": "/1. Fango Mary Waii.pdf",
-                                "2": "/2. Lokpa Tamang.pdf",
-                                "3": "/3. Dr Jomyir Bagra.pdf",
-                                "4": "/4. Dr Prem Taba.pdf",
-                                "5": "/5. Myger Babla.pdf",
-                                "6": "/6. Priyanka Ghimire.pdf",
-                                "7": "/7. Sachoiba Inka.pdf",
-                                "8": "/8. Sashanka Gogoi .pdf",
-                                "9": "/9. Tongchen Jomba.pdf",
-                                "10": "/10. Saurav Baumhik.pdf",
-                                "11": "/11. Subham Tripathy.pdf",
-                                "12": "/12. Vanishka Marwaha.pdf",
-                                "13": "/13. Yagyaj.pdf",
-                                "14": "/14. Mudang Onju.pdf",
-                              };
-                              const pdfPath = pdfFiles[relatedPaper.id as keyof typeof pdfFiles];
-                              if (pdfPath) {
-                                window.open(pdfPath, "_blank", "noopener,noreferrer");
-                              }
-                            }}
-                            className="text-xs bg-orange-500 hover:bg-orange-600"
-                          >
-                            Download
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </div>
-
-              <div className="flex gap-3 mt-6 pt-6 border-t">
-                <Button
-                  className="flex-1 bg-orange-500 hover:bg-orange-600 text-white"
-                  onClick={() => {
-                    const pdfFiles = {
-                      "1": "/1. Fango Mary Waii.pdf",
-                      "2": "/2. Lokpa Tamang.pdf",
-                      "3": "/3. Dr Jomyir Bagra.pdf",
-                      "4": "/4. Dr Prem Taba.pdf",
-                      "5": "/5. Myger Babla.pdf",
-                      "6": "/6. Priyanka Ghimire.pdf",
-                      "7": "/7. Sachoiba Inka.pdf",
-                      "8": "/8. Sashanka Gogoi .pdf",
-                      "9": "/9. Tongchen Jomba.pdf",
-                      "10": "/10. Saurav Baumhik.pdf",
-                      "11": "/11. Subham Tripathy.pdf",
-                      "12": "/12. Vanishka Marwaha.pdf",
-                      "13": "/13. Yagyaj.pdf",
-                      "14": "/14. Mudang Onju.pdf",
-                    };
-                    const pdfPath = pdfFiles[selectedPaper.id as keyof typeof pdfFiles];
-                    if (pdfPath) {
-                      window.open(pdfPath, "_blank", "noopener,noreferrer");
-                    }
-                  }}
-                >
-                  <Download className="w-4 h-4 mr-2" />
-                  Download Full Paper
-                </Button>
-                <Button
-                  variant="outline"
-                  onClick={() => setSelectedPaper(null)}
-                >
-                  Close
-                </Button>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      )}
     </div>
   );
 };
