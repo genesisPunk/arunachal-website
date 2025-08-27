@@ -259,8 +259,25 @@ const ResearchPapers = () => {
       </section>
 
       {/* Category Filter */}
-      <section className="py-12 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-        <div className="container mx-auto px-4">
+      <section className="py-12 science-bg relative overflow-hidden">
+        {/* Science Background Elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-10 left-10 w-20 h-20 border-2 border-blue-400 rounded-full molecule-animation"></div>
+          <div
+            className="absolute top-20 right-20 w-16 h-16 border-2 border-cyan-400 rounded-full molecule-animation"
+            style={{ animationDelay: "1s" }}
+          ></div>
+          <div
+            className="absolute bottom-20 left-1/4 w-12 h-12 border-2 border-emerald-400 rounded-full molecule-animation"
+            style={{ animationDelay: "2s" }}
+          ></div>
+          <div
+            className="absolute bottom-10 right-1/3 w-14 h-14 border-2 border-blue-500 rounded-full molecule-animation"
+            style={{ animationDelay: "3s" }}
+          ></div>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-wrap justify-center gap-3">
             {categories.map((category) => (
               <Button
@@ -271,8 +288,8 @@ const ResearchPapers = () => {
                 onClick={() => setSelectedCategory(category.id)}
                 className={`px-6 py-3 font-semibold text-sm transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 ${
                   selectedCategory === category.id
-                    ? "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white border-0 shadow-blue-200"
-                    : "bg-white border-2 border-slate-300 text-slate-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:border-blue-400 hover:text-blue-700"
+                    ? "science-button border-0"
+                    : "bg-white/80 backdrop-blur-sm border-2 border-cyan-300 text-slate-700 hover:bg-gradient-to-r hover:from-cyan-50 hover:to-blue-50 hover:border-cyan-400 hover:text-cyan-700"
                 }`}
               >
                 {category.name}
@@ -283,9 +300,18 @@ const ResearchPapers = () => {
       </section>
 
       {/* Research Papers Grid */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section className="py-16 science-bg relative overflow-hidden">
+        {/* Science Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-1/4 left-1/4 w-32 h-32 border border-blue-300 rounded-full dna-animation"></div>
+          <div
+            className="absolute top-3/4 right-1/4 w-24 h-24 border border-cyan-300 rounded-full dna-animation"
+            style={{ animationDelay: "2s" }}
+          ></div>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
             {filteredArticles.map((article, index) => (
               <motion.div
                 key={article.id}
@@ -293,52 +319,37 @@ const ResearchPapers = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Card className="h-full hover:shadow-lg transition-shadow duration-300 group flex flex-col bg-white border border-gray-200">
-                  <div className="aspect-video overflow-hidden">
-                    <img
-                      src={article.image}
-                      alt={article.title}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                  </div>
-                  <CardHeader>
+                <Card className="h-full science-card hover:shadow-xl transition-all duration-300 group flex flex-col border border-cyan-200/50">
+                  <CardHeader className="pb-3 sm:pb-4">
                     <div className="flex items-center justify-between mb-2">
-                      <Badge className="bg-green-500 text-white capitalize">
+                      <Badge className="science-badge capitalize text-xs px-2 py-1">
                         {article.category}
                       </Badge>
-                      <span className="text-sm text-gray-500">
+                      <span className="text-xs text-slate-500">
                         {article.readTime}
                       </span>
                     </div>
-                    <CardTitle className="text-xl group-hover:text-orange-500 transition-colors duration-300">
+                    <CardTitle className="text-base sm:text-lg lg:text-xl science-text-primary group-hover:text-cyan-600 transition-colors duration-300 leading-tight">
                       {article.title}
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="flex-1 flex flex-col">
-                    <p className="text-gray-600 mb-4 flex-1">
+                  <CardContent className="flex-1 flex flex-col pt-0">
+                    <p className="science-text-secondary mb-3 sm:mb-4 flex-1 text-sm leading-relaxed">
                       {article.excerpt}
                     </p>
-                    <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                    <div className="flex items-center justify-between text-xs text-slate-500 mb-3 sm:mb-4">
                       <div className="flex items-center">
-                        <User className="w-4 h-4 mr-1" />
-                        <span>{article.author}</span>
-                        <a
-                          href={`https://linkedin.com/in/${article.author.toLowerCase().replace(/\s+/g, "-").replace(/\./g, "")}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="ml-2 text-blue-600 hover:text-blue-800"
-                        >
-                          <Linkedin className="w-4 h-4" />
-                        </a>
+                        <User className="w-3 h-3 mr-1" />
+                        <span className="truncate">{article.author}</span>
                       </div>
                       <div className="flex items-center">
-                        <Calendar className="w-4 h-4 mr-1" />
-                        <span>{article.date}</span>
+                        <Calendar className="w-3 h-3 mr-1" />
+                        <span className="text-xs">{article.date}</span>
                       </div>
                     </div>
                     <div className="mt-auto">
                       <Button
-                        className="w-full bg-orange-500 hover:bg-orange-600 text-white group"
+                        className="w-full science-button text-sm py-2 group"
                         onClick={() => {
                           const pdfFiles = {
                             "1": "/1. Fango Mary Waii.pdf",
@@ -370,8 +381,8 @@ const ResearchPapers = () => {
                           }
                         }}
                       >
-                        <span>Download Research Paper</span>
-                        <Download className="w-4 h-4 ml-2" />
+                        <span>Download Paper</span>
+                        <Download className="w-3 h-3 ml-2" />
                       </Button>
                     </div>
                   </CardContent>

@@ -51,7 +51,6 @@ const Articles = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [activeTab, setActiveTab] = useState("all");
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
-  const [showSubmitDialog, setShowSubmitDialog] = useState(false);
 
   const articles: Article[] = [
     // Articles
@@ -310,6 +309,28 @@ const Articles = () => {
         </section>
       )}
 
+      {/* Research Paper Submission Message */}
+      <section className="py-8 bg-blue-50">
+        <div className="container mx-auto px-4">
+          <div className="bg-blue-100 border border-blue-200 rounded-lg p-6 max-w-2xl mx-auto text-center">
+            <h3 className="text-lg font-semibold text-blue-800 mb-2">
+              Share Your Story
+            </h3>
+            <p className="text-blue-700">
+              Have an inspiring story or valuable insights to share? Join our
+              community of writers and contribute to the conversation. Write an
+              email to{" "}
+              <a
+                href="mailto:Arunachalyouthparliament@gmail.com"
+                className="font-medium underline hover:text-blue-900"
+              >
+                Arunachalyouthparliament@gmail.com
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Main Content */}
       <section className="py-16">
         <div className="container mx-auto px-4">
@@ -471,31 +492,6 @@ const Articles = () => {
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-16 bg-gradient-to-r from-orange-500 via-white to-green-500">
-        <div className="container mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">
-              Share Your Story
-            </h2>
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-              Have an inspiring story or valuable insights to share? Join our
-              community of writers and contribute to the conversation.
-            </p>
-            <Button
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-              onClick={() => setShowSubmitDialog(true)}
-            >
-              Submit Your Article
-            </Button>
-          </motion.div>
-        </div>
-      </section>
-
       {/* Article Detail Dialog */}
       <Dialog
         open={!!selectedArticle}
@@ -649,37 +645,6 @@ const Articles = () => {
               </div>
             </>
           )}
-        </DialogContent>
-      </Dialog>
-
-      {/* Submit Article Dialog */}
-      <Dialog open={showSubmitDialog} onOpenChange={setShowSubmitDialog}>
-        <DialogContent className="max-w-md bg-gradient-to-br from-orange-50/90 via-white/95 to-green-50/90 backdrop-blur-sm border border-orange-200/30 shadow-xl rounded-xl">
-          <DialogHeader>
-            <DialogTitle className="text-xl font-bold text-gray-800">
-              Submit Your Article
-            </DialogTitle>
-          </DialogHeader>
-          <div className="space-y-4">
-            <p className="text-gray-700 leading-relaxed">
-              If you want to feature your article or blog here, please reach out
-              to us at{" "}
-              <a
-                href="mailto:Arunachalyouthparliament@gmail.com"
-                className="text-blue-600 hover:text-blue-700 font-medium underline"
-              >
-                Arunachalyouthparliament@gmail.com
-              </a>
-            </p>
-            <div className="flex justify-end">
-              <Button
-                onClick={() => setShowSubmitDialog(false)}
-                className="bg-blue-600 hover:bg-blue-700 text-white"
-              >
-                Got it
-              </Button>
-            </div>
-          </div>
         </DialogContent>
       </Dialog>
     </div>

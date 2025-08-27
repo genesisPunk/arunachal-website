@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import NavigationBar from "./NavigationBar";
 import AnnouncementSection from "./AnnouncementSection";
@@ -87,9 +87,123 @@ const InitiativeCard = ({
   );
 };
 
+// Leader Feedback Component
+const LeaderFeedback = () => {
+  const [currentLeader, setCurrentLeader] = useState(0);
+
+  const leaders = [
+    {
+      name: "Mama Natung",
+      position: "Home Minister",
+      location: "Arunachal Pradesh",
+      image: "/Home_minister.png",
+      quote:
+        "The youth are the architects of tomorrow's Arunachal Pradesh. Their voices in the Youth Parliament will shape our state's future.",
+      color: "orange",
+    },
+    {
+      name: "Oken Tayeng",
+      position: "MLA",
+      location: "Govt of Arunachal Pradesh",
+      image: "/MLA.png",
+      quote:
+        "Democratic participation begins with the youth. The Youth Parliament is where future leaders learn to serve their people with dedication.",
+      color: "green",
+    },
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentLeader((prev) => (prev + 1) % leaders.length);
+    }, 5000); // Change every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [leaders.length]);
+
+  const leader = leaders[currentLeader];
+  const isOrange = leader.color === "orange";
+
+  return (
+    <div className="flex justify-center">
+      <motion.div
+        key={currentLeader}
+        className="group relative max-w-2xl"
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8 }}
+      >
+        {/* Image Container */}
+        <div className="relative mb-8">
+          <div className="relative w-full h-96 md:h-[500px] rounded-3xl overflow-hidden shadow-2xl">
+            <motion.img
+              src={leader.image}
+              alt={`${leader.name} - ${leader.position}`}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              whileHover={{ scale: 1.02 }}
+            />
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+          </div>
+
+          {/* Flag Badge */}
+          <div className="absolute -top-3 -right-3 w-16 h-16 bg-gradient-to-br from-orange-500 via-white to-green-500 rounded-full flex items-center justify-center shadow-lg">
+            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
+              <span className="text-[#000080] font-bold text-xs">AP</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="text-center">
+          <h3
+            className={`text-3xl md:text-4xl font-bold text-[#000080] mb-3 group-hover:text-${isOrange ? "orange" : "green"}-600 transition-colors duration-300`}
+          >
+            {leader.name}
+          </h3>
+          <p
+            className={`text-${isOrange ? "orange" : "green"}-600 font-semibold mb-2 text-lg`}
+          >
+            {leader.position}
+          </p>
+          <p className="text-slate-600 mb-8">{leader.location}</p>
+
+          {/* Quote */}
+          <div className="text-center">
+            <svg
+              className={`w-12 h-12 text-${isOrange ? "orange" : "green"}-400 mx-auto mb-6`}
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z" />
+            </svg>
+            <p className="text-slate-700 italic font-medium leading-relaxed text-xl md:text-2xl max-w-4xl mx-auto">
+              "{leader.quote}"
+            </p>
+          </div>
+        </div>
+
+        {/* Navigation Dots */}
+        <div className="flex justify-center mt-8 space-x-3">
+          {leaders.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentLeader(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === currentLeader
+                  ? "bg-gradient-to-r from-orange-500 to-green-500 scale-125"
+                  : "bg-gray-300 hover:bg-gray-400"
+              }`}
+            />
+          ))}
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+
 const Home = () => {
   const navigate = useNavigate();
-  
+
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation Bar */}
@@ -262,6 +376,7 @@ const Home = () => {
               <Link
                 to="/about-us"
                 className="inline-flex items-center justify-center text-xs sm:text-sm md:text-base py-2 sm:py-2.5 md:py-3 px-3 sm:px-4 md:px-6 bg-white/90 backdrop-blur-sm text-[#000080] font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border-2 border-[#000080]/20 hover:border-[#000080]/40 hover:bg-white"
+                onClick={() => window.scrollTo(0, 0)}
               >
                 <span>Learn More</span>
                 <svg
@@ -395,6 +510,42 @@ const Home = () => {
         <SpeakersCarousel />
       </section>
 
+      {/* What Our Leaders Say Section */}
+      <section className="py-20 bg-gradient-to-br from-orange-50/30 via-white to-green-50/30 relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 via-white to-green-500"></div>
+          <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 via-white to-green-500"></div>
+          <div className="absolute top-10 left-10 w-20 h-20 bg-orange-200/20 rounded-full blur-xl"></div>
+          <div className="absolute bottom-10 right-10 w-32 h-32 bg-green-200/20 rounded-full blur-xl"></div>
+          <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-orange-100/30 rounded-full blur-lg"></div>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-7xl mx-auto">
+            {/* Header */}
+            <motion.div
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-[#000080] mb-6">
+                What Our Leaders Say
+              </h2>
+              <div className="w-32 h-1 bg-gradient-to-r from-orange-500 via-white to-green-500 mx-auto mb-6 rounded-full shadow-md" />
+              <p className="text-lg text-slate-700 max-w-3xl mx-auto leading-relaxed">
+                Inspiring words from our distinguished leaders who guide and
+                support the youth of Arunachal Pradesh
+              </p>
+            </motion.div>
+
+            {/* Single Leader Display */}
+            <LeaderFeedback />
+          </div>
+        </div>
+      </section>
+
       {/* Moments Section */}
       <section className="py-20 bg-gradient-to-br from-white via-orange-50 to-green-50 relative overflow-hidden">
         <div className="container mx-auto px-4">
@@ -462,7 +613,10 @@ const Home = () => {
               transition={{ duration: 0.8, delay: 0.8 }}
             >
               <motion.button
-                onClick={() => navigate("/gallery")}
+                onClick={() => {
+                  navigate("/gallery");
+                  setTimeout(() => window.scrollTo(0, 0), 100);
+                }}
                 className="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-orange-500 via-orange-600 to-green-600 text-white font-bold text-lg rounded-full shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -752,7 +906,12 @@ const Home = () => {
                   <img
                     src="/dodum.jpg"
                     alt="Dodum Natung - Chairman, AYP"
-                    className="w-full h-[500px] object-cover"
+                    className="w-full h-[500px] object-cover hidden md:block"
+                  />
+                  <img
+                    src="/dodum-mobile.jpg"
+                    alt="Dodum Natung - Chairman, AYP"
+                    className="w-full h-[500px] object-cover md:hidden"
                   />
                   {/* Name and Position Overlay */}
                   <div className="absolute bottom-6 left-6 bg-black/70 backdrop-blur-sm rounded-2xl p-4 text-white">
@@ -898,15 +1057,58 @@ const Home = () => {
             <Link
               to="/contact-us"
               className="bg-white text-blue-800 px-6 py-3 rounded-md font-medium hover:bg-blue-50 transition duration-300"
+              onClick={() => setTimeout(() => window.scrollTo(0, 0), 100)}
             >
               Contact Us
             </Link>
             <Link
               to="/about-us"
               className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-md font-medium hover:bg-white hover:text-blue-800 transition duration-300"
+              onClick={() => setTimeout(() => window.scrollTo(0, 0), 100)}
             >
               Learn More
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Views Counter Section */}
+      <section className="py-8 bg-slate-100">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-center">
+            <div className="views-counter flex items-center space-x-4">
+              <div className="flex items-center space-x-2">
+                <svg
+                  className="w-5 h-5 text-blue-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                <span className="text-sm font-medium">Total Views:</span>
+              </div>
+              <div className="flex items-center space-x-1">
+                <span className="counter-digit text-2xl">1</span>
+                <span className="counter-digit text-2xl">2</span>
+                <span className="counter-digit text-2xl">3</span>
+                <span className="counter-digit text-2xl">,</span>
+                <span className="counter-digit text-2xl">4</span>
+                <span className="counter-digit text-2xl">5</span>
+                <span className="counter-digit text-2xl">6</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -939,7 +1141,7 @@ const Home = () => {
                   >
                     <path
                       fillRule="evenodd"
-                      d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                      d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C19.612 23.027 24 18.062 24 12.073z"
                       clipRule="evenodd"
                     />
                   </svg>
@@ -999,6 +1201,9 @@ const Home = () => {
                     <Link
                       to={link.path}
                       className="text-slate-300 hover:text-white transition-colors"
+                      onClick={() =>
+                        setTimeout(() => window.scrollTo(0, 0), 100)
+                      }
                     >
                       {link.name}
                     </Link>

@@ -263,4 +263,95 @@
     border-radius: 14px;
     z-index: -1;
   }
+
+  /* Science Theme Components */
+  .science-gradient {
+    background: linear-gradient(
+      135deg,
+      #1e3a8a 0%,
+      #3b82f6 25%,
+      #06b6d4 50%,
+      #10b981 75%,
+      #059669 100%
+    );
+  }
+
+  .science-bg {
+    background: linear-gradient(
+      135deg,
+      #f0f9ff 0%,
+      #e0f2fe 25%,
+      #f0fdfa 75%,
+      #ecfdf5 100%
+    );
+  }
+
+  .science-card {
+    @apply bg-white/90 backdrop-blur-sm border border-cyan-200/50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(240, 249, 255, 0.9) 100%
+    );
+  }
+
+  .science-button {
+    @apply bg-gradient-to-r from-blue-600 via-cyan-600 to-emerald-600 hover:from-blue-700 hover:via-cyan-700 hover:to-emerald-700 text-white font-medium px-6 py-2.5 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg;
+  }
+
+  .science-text-primary {
+    @apply text-blue-900;
+  }
+
+  .science-text-secondary {
+    @apply text-slate-700;
+  }
+
+  .science-badge {
+    @apply bg-gradient-to-r from-cyan-500 to-blue-600 text-white;
+  }
+
+  /* Science particles animation */
+  @keyframes molecule {
+    0%,
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    25% {
+      transform: translateY(-10px) rotate(90deg);
+    }
+    50% {
+      transform: translateY(-5px) rotate(180deg);
+    }
+    75% {
+      transform: translateY(-15px) rotate(270deg);
+    }
+  }
+
+  .molecule-animation {
+    animation: molecule 4s ease-in-out infinite;
+  }
+
+  /* DNA helix animation */
+  @keyframes dna-helix {
+    0% {
+      transform: rotateY(0deg);
+    }
+    100% {
+      transform: rotateY(360deg);
+    }
+  }
+
+  .dna-animation {
+    animation: dna-helix 8s linear infinite;
+  }
+
+  /* Views counter styles */
+  .views-counter {
+    @apply bg-gradient-to-r from-slate-800 to-slate-900 text-white rounded-lg px-4 py-2 shadow-lg;
+  }
+
+  .counter-digit {
+    @apply inline-block min-w-[2ch] text-center font-mono font-bold;
+  }
 }
