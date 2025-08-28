@@ -170,7 +170,7 @@ const AboutUs = () => {
                 enhance political and social involvement. The platform
                 encourages youth to contribute to society through active public
                 participation, fostering positive development for Arunachal
-                Pradesh.
+                Pradesh. Apart from organizing events and programmes, we also provide a platform for students to share their voices and ideas. We actively publish and promote articles, blogs, and research papers contributed by students, giving them visibility and recognition. Through this initiative, we aim to encourage creativity, critical thinking, and academic excellence, while inspiring others to learn and engage with fresh perspectives.
               </p>
             </motion.div>
           </div>

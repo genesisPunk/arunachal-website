@@ -142,7 +142,7 @@ const Articles = () => {
       category: "culture",
       readTime: "5 min read",
       image:
-        "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=800&q=80",
+        "https://images.unsplash.com/photo-1731209272614-78faeb2a3a78?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=800&q=80",
       views: "1.9k",
       likes: "127",
       type: "blog",
