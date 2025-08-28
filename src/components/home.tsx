@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import NavigationBar from "./NavigationBar";
 import AnnouncementSection from "./AnnouncementSection";
 import SpeakersCarousel from "./SpeakersCarousel";
+import { getViewCount, incrementViewCount } from "../lib/supabase";
 
 import { motion } from "framer-motion";
 import {
@@ -237,6 +238,39 @@ const LeaderFeedback = () => {
 
 const Home = () => {
   const navigate = useNavigate();
+  const [viewCount, setViewCount] = useState(934);
+  const [hasIncrementedView, setHasIncrementedView] = useState(false);
+
+  useEffect(() => {
+    // Load initial view count and increment it
+    const handleViewCount = async () => {
+      try {
+        // Check if we've already incremented the view for this session
+        const sessionKey = "ayp_view_incremented";
+        const hasIncremented = sessionStorage.getItem(sessionKey);
+
+        if (!hasIncremented && !hasIncrementedView) {
+          // Increment the view count in database
+          const newCount = await incrementViewCount();
+          if (newCount) {
+            setViewCount(newCount);
+          }
+          // Mark as incremented for this session
+          sessionStorage.setItem(sessionKey, "true");
+          setHasIncrementedView(true);
+        } else {
+          // Just fetch the current count without incrementing
+          const currentCount = await getViewCount();
+          setViewCount(currentCount);
+        }
+      } catch (error) {
+        console.error("Error handling view count:", error);
+        // Keep the default value if there's an error
+      }
+    };
+
+    handleViewCount();
+  }, [hasIncrementedView]);
 
   return (
     <div className="min-h-screen bg-white">
@@ -1139,15 +1173,17 @@ const Home = () => {
               {/* Scoreboard Style Counter */}
               <div className="bg-black text-green-400 px-4 py-2 rounded-lg font-mono text-xl font-bold border-2 border-gray-600 shadow-lg">
                 <div className="flex items-center space-x-1">
-                  <span className="bg-gray-800 px-2 py-1 rounded border border-gray-600">
-                    9
-                  </span>
-                  <span className="bg-gray-800 px-2 py-1 rounded border border-gray-600">
-                    3
-                  </span>
-                  <span className="bg-gray-800 px-2 py-1 rounded border border-gray-600">
-                    4
-                  </span>
+                  {viewCount
+                    .toString()
+                    .split("")
+                    .map((digit, index) => (
+                      <span
+                        key={index}
+                        className="bg-gray-800 px-2 py-1 rounded border border-gray-600"
+                      >
+                        {digit}
+                      </span>
+                    ))}
                 </div>
               </div>
             </div>
