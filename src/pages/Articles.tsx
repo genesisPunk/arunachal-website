@@ -44,6 +44,7 @@ interface Article {
   likes: string;
   type: "article" | "blog";
   featured?: boolean;
+  content: string[];
 }
 
 const Articles = () => {
@@ -69,6 +70,13 @@ const Articles = () => {
       likes: "156",
       type: "article",
       featured: true,
+      content: [
+        "The landscape of youth leadership in Northeast India is undergoing a remarkable transformation. Young leaders across the region are breaking traditional barriers and creating innovative pathways for social and political change. From the hills of Arunachal Pradesh to the valleys of Manipur, a new generation of activists, entrepreneurs, and changemakers is emerging with fresh perspectives and bold visions.",
+        "What sets these young leaders apart is their ability to blend traditional wisdom with modern approaches. They understand the importance of preserving cultural heritage while embracing technological advancement. This unique perspective allows them to address contemporary challenges while staying rooted in their cultural identity.",
+        "The rise of digital platforms has significantly amplified their voices. Social media campaigns, online advocacy, and digital storytelling have become powerful tools for mobilizing communities and raising awareness about regional issues. Young leaders are leveraging these platforms to connect with peers across the Northeast and beyond, creating a network of change agents.",
+        "Educational initiatives led by youth are particularly noteworthy. Many young leaders are establishing community learning centers, organizing skill development workshops, and creating mentorship programs. These efforts are not only addressing immediate educational needs but also building long-term capacity for sustainable development in the region.",
+        "The future of Northeast India looks promising with this emerging generation of leaders who are committed to inclusive growth, environmental sustainability, and social justice. Their work is laying the foundation for a more prosperous and equitable future for all communities in the region.",
+      ],
     },
     {
       id: "2",
@@ -84,6 +92,14 @@ const Articles = () => {
       views: "1.8k",
       likes: "89",
       type: "article",
+      content: [
+        "The digital revolution has reached the remote villages of Arunachal Pradesh, bringing unprecedented opportunities for economic and social transformation. What was once considered impossible due to geographical barriers is now becoming reality through innovative technology solutions and determined community efforts.",
+        "Mobile connectivity has been the game-changer. With improved network infrastructure, farmers in remote areas can now access real-time weather information, market prices, and agricultural best practices. This has led to better crop planning, reduced post-harvest losses, and increased income for farming families.",
+        "E-governance initiatives have simplified administrative processes for rural residents. Services that previously required long journeys to district headquarters can now be accessed through digital service centers in villages. Birth certificates, land records, and government scheme applications are now just a few clicks away.",
+        "The education sector has witnessed remarkable changes with the introduction of digital learning platforms. Students in remote areas now have access to quality educational content, online courses, and virtual classrooms. This has significantly improved learning outcomes and opened up new career opportunities for young people.",
+        "Healthcare delivery has also been revolutionized through telemedicine initiatives. Remote consultations with specialists, digital health records, and mobile health units equipped with diagnostic tools are bringing quality healthcare to previously underserved communities.",
+        "The entrepreneurial spirit among rural youth has been ignited by digital platforms. Many are starting online businesses, offering digital services, and creating innovative solutions for local challenges. This is not only generating employment but also keeping young talent in their home communities.",
+      ],
     },
     {
       id: "3",
@@ -99,6 +115,14 @@ const Articles = () => {
       views: "3.1k",
       likes: "203",
       type: "article",
+      content: [
+        "Arunachal Pradesh, with its pristine landscapes and rich cultural diversity, stands at a crucial juncture in its tourism development journey. The state's approach to sustainable tourism could serve as a model for other ecologically sensitive regions, balancing economic growth with environmental conservation and cultural preservation.",
+        "The concept of community-based tourism is gaining momentum across the state. Local communities are being empowered to become stakeholders in tourism development, ensuring that the benefits reach grassroots level. Homestays run by local families provide authentic experiences for visitors while generating direct income for rural households.",
+        "Environmental conservation is at the heart of sustainable tourism initiatives. Strict regulations on visitor numbers in sensitive areas, waste management protocols, and carbon footprint reduction measures are being implemented. The state's commitment to maintaining its forest cover while promoting tourism demonstrates a balanced approach to development.",
+        "Cultural tourism is being promoted as a way to preserve and celebrate the diverse traditions of Arunachal's tribal communities. Festival tourism, traditional craft workshops, and cultural immersion programs are creating opportunities for cultural exchange while providing economic incentives for communities to maintain their heritage.",
+        "Adventure tourism is being developed with a focus on minimal environmental impact. Trekking routes are being designed to distribute tourist traffic, preventing over-concentration in popular areas. Local guides are being trained not just in tourism services but also in conservation practices and cultural sensitivity.",
+        "The integration of technology in sustainable tourism is showing promising results. Digital platforms for booking, virtual reality previews of destinations, and mobile apps for responsible travel are enhancing visitor experiences while promoting sustainable practices.",
+      ],
     },
     {
       id: "4",
@@ -114,6 +138,14 @@ const Articles = () => {
       views: "2.7k",
       likes: "178",
       type: "article",
+      content: [
+        "The entrepreneurial landscape of Arunachal Pradesh is being transformed by a remarkable group of women who are not just building successful businesses but also challenging societal norms and creating pathways for others to follow. Their stories are testament to the power of determination, innovation, and community support.",
+        "Traditional crafts are being revitalized through women-led enterprises. Artisans who once struggled to find markets for their handwoven textiles, bamboo crafts, and traditional jewelry are now reaching global customers through e-commerce platforms. These businesses are not only preserving cultural heritage but also providing sustainable livelihoods for rural women.",
+        "The food and hospitality sector has seen significant growth driven by women entrepreneurs. From organic farming ventures to specialty food processing units, women are capitalizing on the state's rich agricultural diversity. Many have established successful restaurants and catering services that showcase authentic Arunachali cuisine.",
+        "Technology-enabled businesses are emerging as women embrace digital entrepreneurship. Online tutoring services, digital marketing agencies, and e-commerce ventures are being launched by tech-savvy women who are leveraging their skills to create innovative solutions for local and regional markets.",
+        "Access to finance and business support has improved significantly through various government schemes and microfinance institutions. Women's self-help groups have evolved into business collectives, pooling resources and sharing knowledge to launch and scale enterprises. These collaborative approaches are proving highly effective in the local context.",
+        "The ripple effects of women's entrepreneurship extend far beyond individual success stories. These businesses are creating employment opportunities for other women, contributing to local economic development, and inspiring the next generation of female leaders. The transformation is not just economic but also social, as successful women entrepreneurs become role models and advocates for gender equality.",
+      ],
     },
     // Blogs
     {
@@ -131,6 +163,13 @@ const Articles = () => {
       likes: "94",
       type: "blog",
       featured: true,
+      content: [
+        "When I first moved to Itanagar for my studies, I never imagined that this bustling capital city would become the backdrop for my journey into activism. It all started with a simple observation: despite being the political center of Arunachal Pradesh, many young people felt disconnected from the decision-making processes that affected their lives.",
+        "My first community event was a disaster, or so I thought at the time. Only twelve people showed up to what I had envisioned as a grand youth forum. But those twelve individuals became the core of something much larger. We spent hours discussing the challenges facing young people in our state – unemployment, limited educational opportunities, and the lack of platforms for civic engagement.",
+        "The real breakthrough came when we decided to focus on actionable solutions rather than just highlighting problems. We organized skill development workshops, created mentorship programs connecting students with professionals, and established a youth advisory committee that regularly engaged with local government officials.",
+        "Facing resistance was inevitable. Some questioned our methods, others doubted our commitment, and there were moments when I questioned myself. The bureaucratic hurdles seemed insurmountable, and funding was always a challenge. But each small victory – a policy suggestion accepted, a young person finding employment through our network, a successful community project – reinforced our belief in the cause.",
+        "What I've learned is that activism isn't about grand gestures or dramatic confrontations. It's about consistent, patient work to create positive change. It's about building bridges between communities, facilitating dialogue, and empowering others to find their voice. Today, our youth network has grown to over 500 active members across Itanagar, and we continue to work towards a more inclusive and participatory democracy.",
+      ],
     },
     {
       id: "6",
@@ -146,6 +185,13 @@ const Articles = () => {
       views: "1.9k",
       likes: "127",
       type: "blog",
+      content: [
+        "Growing up in a Nyishi household, I was surrounded by the aromatic spices and unique flavors that define Arunachali cuisine. My grandmother's kitchen was a treasure trove of traditional recipes passed down through generations, each dish telling a story of our cultural heritage and connection to the land.",
+        "The traditional preparation of bamboo shoot curry, fermented fish, and smoked meat might seem simple, but the techniques involved are incredibly sophisticated. The fermentation processes, smoking methods, and use of indigenous herbs create complex flavor profiles that rival any gourmet cuisine. Yet, these culinary traditions were often overlooked in favor of mainstream Indian or international foods.",
+        "My culinary journey began when I started experimenting with fusion cooking during college. I discovered that traditional Arunachali ingredients could be incorporated into contemporary dishes without losing their essence. Bamboo shoot risotto, smoked pork tacos with traditional chutneys, and fermented soybean hummus became hits among my friends.",
+        "The real excitement came when I started documenting these experiments and sharing them on social media. The response was overwhelming – young people from across the Northeast were eager to reconnect with their culinary roots while exploring new possibilities. Food became a bridge between tradition and modernity, between generations, and between different communities.",
+        "Today, I run a small catering business that specializes in contemporary interpretations of traditional Arunachali cuisine. Each dish I create is a celebration of our rich food culture, adapted for modern lifestyles and diverse palates. Through food, I'm not just preserving tradition – I'm helping it evolve and thrive in the 21st century.",
+      ],
     },
     {
       id: "7",
@@ -161,6 +207,13 @@ const Articles = () => {
       views: "2.3k",
       likes: "165",
       type: "blog",
+      content: [
+        "The mountains of Arunachal Pradesh have been my greatest teachers. Growing up in a small village nestled between towering peaks, I learned lessons that no classroom could ever provide. The mountains taught me patience – watching the slow change of seasons, the gradual melting of snow, the careful growth of alpine flowers.",
+        "Community was never just a concept in our mountain village; it was a necessity for survival. During harsh winters, families shared resources without question. When someone fell ill, the entire village rallied to help. This spirit of collective responsibility shaped my understanding of what it means to be part of something larger than oneself.",
+        "The mountains also taught me about resilience. Every year, our village faced challenges – landslides that blocked roads, storms that damaged homes, crop failures due to unpredictable weather. But every year, we rebuilt, replanted, and moved forward. The mountains showed us that setbacks are temporary, but the strength to overcome them is permanent.",
+        "Simplicity was another profound lesson. In the mountains, you quickly learn to distinguish between wants and needs. The beauty of a sunrise over snow-capped peaks, the satisfaction of a meal shared with family, the warmth of a fire on a cold night – these simple pleasures became the foundation of contentment.",
+        "As I've moved to urban areas for education and work, I carry these mountain lessons with me. They've helped me navigate the complexities of modern life while staying grounded in values that truly matter. The mountains may be far away now, but their wisdom continues to guide my journey.",
+      ],
     },
     {
       id: "8",
@@ -176,6 +229,14 @@ const Articles = () => {
       views: "1.6k",
       likes: "112",
       type: "blog",
+      content: [
+        "Art has always been the heartbeat of Arunachali communities, but in recent years, we've witnessed a remarkable renaissance of cultural expression that's bringing people together in unprecedented ways. Local artists and cultural enthusiasts are not just preserving traditions – they're reimagining them for contemporary audiences.",
+        "The transformation began with small community art workshops where elders shared traditional techniques with younger generations. What started as simple skill-sharing sessions evolved into vibrant cultural exchanges. Young people learned traditional weaving patterns, wood carving techniques, and folk songs, while bringing fresh perspectives and modern interpretations to these ancient art forms.",
+        "Street art and murals have become powerful tools for community storytelling. Walls across Itanagar and other towns now display vibrant depictions of local legends, environmental messages, and celebrations of cultural diversity. These public art projects have transformed neighborhoods and created spaces for community dialogue and pride.",
+        "Cultural festivals have taken on new dimensions as artists collaborate across tribal boundaries. The annual Nyokum festival now features fusion performances where traditional Nyishi dances are accompanied by contemporary music, creating spectacular shows that appeal to all age groups while maintaining cultural authenticity.",
+        "Digital platforms have amplified the reach of local artists. Social media showcases of traditional crafts, online exhibitions of contemporary art inspired by tribal motifs, and virtual cultural performances have connected Arunachali artists with global audiences. This exposure has not only provided economic opportunities but also increased pride in local cultural heritage.",
+        "The impact extends beyond artistic expression. These cultural initiatives have strengthened community bonds, provided platforms for intergenerational dialogue, and created economic opportunities for artists and craftspeople. Art has become a bridge connecting the past with the future, tradition with innovation, and communities with each other.",
+      ],
     },
   ];
 
@@ -560,29 +621,11 @@ const Articles = () => {
                   </p>
 
                   <div className="space-y-4 text-gray-700">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </p>
-                    <p>
-                      Duis aute irure dolor in reprehenderit in voluptate velit
-                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                      sint occaecat cupidatat non proident, sunt in culpa qui
-                      officia deserunt mollit anim id est laborum.
-                    </p>
-                    <p>
-                      Sed ut perspiciatis unde omnis iste natus error sit
-                      voluptatem accusantium doloremque laudantium, totam rem
-                      aperiam, eaque ipsa quae ab illo inventore veritatis et
-                      quasi architecto beatae vitae dicta sunt explicabo.
-                    </p>
-                    <p>
-                      Nemo enim ipsam voluptatem quia voluptas sit aspernatur
-                      aut odit aut fugit, sed quia consequuntur magni dolores
-                      eos qui ratione voluptatem sequi nesciunt.
-                    </p>
+                    {selectedArticle.content.map((paragraph, index) => (
+                      <p key={index} className="leading-relaxed">
+                        {paragraph}
+                      </p>
+                    ))}
                   </div>
                 </div>
 
