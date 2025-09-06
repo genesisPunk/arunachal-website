@@ -944,92 +944,53 @@ const Home = () => {
       </section>
 
       {/* Stay Connected Section */}
-      <section className="py-20 bg-blue-300 relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-blue-800 to-blue-900 relative overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-7xl mx-auto">
-            {/* Header */}
-            <motion.div
-              className="text-center mb-16"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6 px-4">
-                Stay Connected
-              </h2>
-              <div className="w-24 md:w-32 h-1 bg-white mx-auto mb-4 md:mb-6 rounded-full shadow-md" />
-              <p className="text-base md:text-lg lg:text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed px-4">
-                Follow our journey and stay updated with the latest news,
-                events, and initiatives
-              </p>
-            </motion.div>
-
             {/* Two Column Layout */}
-            <div className="flex flex-col lg:flex-row items-center justify-center max-w-6xl mx-auto">
-              {/* First Column - Image */}
+            <div className="flex flex-col lg:flex-row items-start justify-center max-w-6xl mx-auto gap-8 lg:gap-16">
+              {/* First Column - Join the Movement Content */}
               <motion.div
-                className="lg:w-3/5 w-full relative"
+                className="lg:w-3/5 w-full relative flex items-center justify-center min-h-[480px]"
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <div className="relative overflow-hidden rounded-3xl shadow-2xl">
-                  <img
-                    src="/dodum.jpg"
-                    alt="Dodum Natung - Chairman, AYP"
-                    className="w-full h-[500px] object-cover hidden md:block"
-                  />
-                  <img
-                    src="/dodum-mobile.jpg"
-                    alt="Dodum Natung - Chairman, AYP"
-                    className="w-full h-[500px] object-cover md:hidden"
-                  />
-                  {/* Name and Position Overlay */}
-                  <div className="absolute bottom-6 left-6 bg-black/70 backdrop-blur-sm rounded-2xl p-4 text-white">
-                    <div className="flex items-center space-x-6">
-                      <div>
-                        <h3 className="text-xl font-bold mb-1">Dodum Natung</h3>
-                        <p className="text-sm text-gray-200">Chairman, AYP</p>
-                      </div>
-                      {/* Social Media Icons */}
-                      <div className="flex space-x-2">
-                        <a
-                          href="https://www.facebook.com/profile.php?id=100087370252292"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
-                        >
-                          <svg
-                            className="w-4 h-4 text-white"
-                            fill="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                          </svg>
-                        </a>
-                        <a
-                          href="https://x.com/DodumNatung"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-8 h-8 bg-gradient-to-br from-gray-900 to-black rounded-lg flex items-center justify-center hover:from-black hover:to-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
-                        >
-                          <svg
-                            className="w-4 h-4 text-white"
-                            fill="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                          </svg>
-                        </a>
-                      </div>
-                    </div>
+                <div className="text-center">
+                  <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 md:mb-6 px-4">
+                    Join the Movement
+                  </h2>
+                  <p className="text-sm md:text-base lg:text-lg text-blue-100 max-w-2xl mx-auto mb-6 md:mb-8 px-4 leading-relaxed">
+                    Be part of the change you want to see. Join the Arunachal
+                    Pradesh Youth Parliament and make your voice heard in
+                    shaping our state's future.
+                  </p>
+                  <div className="flex flex-col sm:flex-row justify-center gap-4">
+                    <Link
+                      to="/contact-us"
+                      className="bg-white text-blue-800 px-6 py-3 rounded-md font-medium hover:bg-blue-50 transition duration-300"
+                      onClick={() =>
+                        setTimeout(() => window.scrollTo(0, 0), 100)
+                      }
+                    >
+                      Contact Us
+                    </Link>
+                    <Link
+                      to="/about-us"
+                      className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-md font-medium hover:bg-white hover:text-blue-800 transition duration-300"
+                      onClick={() =>
+                        setTimeout(() => window.scrollTo(0, 0), 100)
+                      }
+                    >
+                      Know the Team
+                    </Link>
                   </div>
                 </div>
               </motion.div>
 
-              {/* Second Column - Facebook Embed (Overlapping) */}
+              {/* Second Column - Facebook Embed */}
               <motion.div
-                className="lg:w-1/3 w-full lg:-ml-16 mt-8 lg:mt-0 relative z-10"
+                className="lg:w-1/3 w-full relative z-10"
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
@@ -1109,36 +1070,6 @@ const Home = () => {
                 </div>
               </motion.div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Call to Action Section */}
-      <section className="py-16 bg-gradient-to-br from-blue-800 to-blue-900">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 md:mb-6 px-4">
-            Join the Movement
-          </h2>
-          <p className="text-sm md:text-base lg:text-lg text-blue-100 max-w-2xl mx-auto mb-6 md:mb-8 px-4 leading-relaxed">
-            Be part of the change you want to see. Join the Arunachal Pradesh
-            Youth Parliament and make your voice heard in shaping our state's
-            future.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link
-              to="/contact-us"
-              className="bg-white text-blue-800 px-6 py-3 rounded-md font-medium hover:bg-blue-50 transition duration-300"
-              onClick={() => setTimeout(() => window.scrollTo(0, 0), 100)}
-            >
-              Contact Us
-            </Link>
-            <Link
-              to="/about-us"
-              className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-md font-medium hover:bg-white hover:text-blue-800 transition duration-300"
-              onClick={() => setTimeout(() => window.scrollTo(0, 0), 100)}
-            >
-              Learn More
-            </Link>
           </div>
         </div>
       </section>
