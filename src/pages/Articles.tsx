@@ -45,6 +45,7 @@ interface Article {
   type: "article" | "blog";
   featured?: boolean;
   content: string[];
+  externalLink?: string;
 }
 
 const Articles = () => {
@@ -57,25 +58,27 @@ const Articles = () => {
     // Articles
     {
       id: "1",
-      title: "The Future of Youth Leadership in Northeast India",
+      title: "Nepal learned the hard way that the medium is the message",
       excerpt:
-        "Exploring how young leaders are shaping the political and social landscape of Northeast India through innovative approaches and grassroots movements.",
-      author: "Rajesh Kumar",
-      date: "March 15, 2024",
+        "McLuhan's foundational assertion that \"the medium is the message\" finds its most dramatic validation in Nepal's recent crisis.",
+      author: "Prem Taba",
+      date: "10 Sept 2025",
       category: "leadership",
-      readTime: "8 min read",
+      readTime: "10 min read",
       image:
-        "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
+        "https://images.pexels.com/photos/2818118/pexels-photo-2818118.jpeg?_gl=1*iayytg*_ga*MTQ3MzU0MjI1LjE3NTc1OTQ1Njk.*_ga_8JE65Q40S6*czE3NTc1OTQ1NjgkbzEkZzEkdDE3NTc1OTQ2MzMkajU5JGwwJGgw",
       views: "2.4k",
       likes: "156",
       type: "article",
       featured: true,
+      externalLink: "https://arunachaltimes.in/index.php/2025/09/10/nepal-learned-the-hard-way-that-the-medium-is-the-message/",
       content: [
-        "The landscape of youth leadership in Northeast India is undergoing a remarkable transformation. Young leaders across the region are breaking traditional barriers and creating innovative pathways for social and political change. From the hills of Arunachal Pradesh to the valleys of Manipur, a new generation of activists, entrepreneurs, and changemakers is emerging with fresh perspectives and bold visions.",
-        "What sets these young leaders apart is their ability to blend traditional wisdom with modern approaches. They understand the importance of preserving cultural heritage while embracing technological advancement. This unique perspective allows them to address contemporary challenges while staying rooted in their cultural identity.",
-        "The rise of digital platforms has significantly amplified their voices. Social media campaigns, online advocacy, and digital storytelling have become powerful tools for mobilizing communities and raising awareness about regional issues. Young leaders are leveraging these platforms to connect with peers across the Northeast and beyond, creating a network of change agents.",
-        "Educational initiatives led by youth are particularly noteworthy. Many young leaders are establishing community learning centers, organizing skill development workshops, and creating mentorship programs. These efforts are not only addressing immediate educational needs but also building long-term capacity for sustainable development in the region.",
-        "The future of Northeast India looks promising with this emerging generation of leaders who are committed to inclusive growth, environmental sustainability, and social justice. Their work is laying the foundation for a more prosperous and equitable future for all communities in the region.",
+        "The violent upheaval that engulfed Nepal on Monday, resulting in 19 deaths and the resignation of home minister Ramesh Lekhak, offers a compelling case study in the complex relationship between social media, governance, and public order in South Asian democracies.",
+        "The decision to ban TikTok and impose restrictions on other social media platforms represents a critical juncture in Nepal's digital governance journey. While the immediate trigger was the spread of inflammatory content that allegedly contributed to the violence, the underlying issues run much deeper.",
+        "Social media platforms have become the primary source of information and political discourse for millions of young Nepalis. The ban raises fundamental questions about digital rights, freedom of expression, and the state's role in regulating online spaces in democratic societies.",
+        "The economic implications of such bans cannot be ignored. Thousands of content creators, digital marketers, and small businesses that rely on these platforms for their livelihoods face immediate uncertainty. The ripple effects extend beyond individual users to the broader digital economy.",
+        "For neighboring countries in South Asia, Nepal's experience serves as both a cautionary tale and a learning opportunity. The challenge lies in finding the right balance between maintaining public order and preserving the democratic values that underpin free societies.",
+        "The path forward requires nuanced policy-making that addresses legitimate security concerns while protecting fundamental rights. This includes investing in digital literacy, strengthening fact-checking mechanisms, and developing more sophisticated approaches to content moderation.",
       ],
     },
     {
@@ -150,6 +153,29 @@ const Articles = () => {
     // Blogs
     {
       id: "5",
+      title: "The Future of Youth Leadership in Northeast India",
+      excerpt:
+        "Exploring how young leaders are shaping the political and social landscape of Northeast India through innovative approaches and grassroots movements.",
+      author: "Rajesh Kumar",
+      date: "March 15, 2024",
+      category: "leadership",
+      readTime: "8 min read",
+      image:
+        "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
+      views: "2.4k",
+      likes: "156",
+      type: "blog",
+      featured: false,
+      content: [
+        "The landscape of youth leadership in Northeast India is undergoing a remarkable transformation. Young leaders across the region are breaking traditional barriers and creating innovative pathways for social and political change. From the hills of Arunachal Pradesh to the valleys of Manipur, a new generation of activists, entrepreneurs, and changemakers is emerging with fresh perspectives and bold visions.",
+        "What sets these young leaders apart is their ability to blend traditional wisdom with modern approaches. They understand the importance of preserving cultural heritage while embracing technological advancement. This unique perspective allows them to address contemporary challenges while staying rooted in their cultural identity.",
+        "The rise of digital platforms has significantly amplified their voices. Social media campaigns, online advocacy, and digital storytelling have become powerful tools for mobilizing communities and raising awareness about regional issues. Young leaders are leveraging these platforms to connect with peers across the Northeast and beyond, creating a network of change agents.",
+        "Educational initiatives led by youth are particularly noteworthy. Many young leaders are establishing community learning centers, organizing skill development workshops, and creating mentorship programs. These efforts are not only addressing immediate educational needs but also building long-term capacity for sustainable development in the region.",
+        "The future of Northeast India looks promising with this emerging generation of leaders who are committed to inclusive growth, environmental sustainability, and social justice. Their work is laying the foundation for a more prosperous and equitable future for all communities in the region.",
+      ],
+    },
+    {
+      id: "6",
       title: "My Journey as a Young Activist in Itanagar",
       excerpt:
         "A personal account of organizing community events, facing challenges, and the lessons learned while advocating for youth rights in the capital city.",
@@ -172,7 +198,7 @@ const Articles = () => {
       ],
     },
     {
-      id: "6",
+      id: "7",
       title: "Food Adventures: Traditional Recipes with Modern Twists",
       excerpt:
         "Discovering the rich culinary heritage of Arunachal Pradesh and how young chefs are innovating traditional recipes for contemporary palates.",
@@ -194,7 +220,7 @@ const Articles = () => {
       ],
     },
     {
-      id: "7",
+      id: "8",
       title: "Life Lessons from the Mountains",
       excerpt:
         "Reflections on growing up in the hills of Arunachal Pradesh and how the mountains have shaped my perspective on life, community, and resilience.",
@@ -216,7 +242,7 @@ const Articles = () => {
       ],
     },
     {
-      id: "8",
+      id: "9",
       title: "Building Communities Through Art and Culture",
       excerpt:
         "How local artists and cultural enthusiasts are using creative expression to bring communities together and preserve traditional art forms.",
@@ -355,10 +381,16 @@ const Articles = () => {
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="text-orange-600 hover:text-orange-700 hover:bg-orange-50"
-                          onClick={() => setSelectedArticle(article)}
+                          className="text-orange-600 hover:text-orange-700 hover:bg-orange-50 text-xs px-2 sm:px-3 h-7 sm:h-8"
+                          onClick={() => {
+                            if (article.externalLink) {
+                              window.open(article.externalLink, '_blank');
+                            } else {
+                              setSelectedArticle(article);
+                            }
+                          }}
                         >
-                          Read More <ArrowRight className="w-4 h-4 ml-1" />
+                          Read <ArrowRight className="w-3 h-3 ml-1" />
                         </Button>
                       </div>
                     </CardContent>
