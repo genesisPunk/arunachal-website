@@ -1192,6 +1192,19 @@ const Home = () => {
                     <path d="M12.017 15.33a3.312 3.312 0 1 1 0-6.624 3.312 3.312 0 0 1 0 6.624zM12.017 7.052a4.963 4.963 0 1 0 0 9.926 4.963 4.963 0 0 0 0-9.926zM18.286 6.776a1.16 1.16 0 1 1-2.32 0 1.16 1.16 0 0 1 2.32 0z" />
                   </svg>
                 </a>
+                <a
+                  href="https://farcaster.xyz/genesis-block"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-gradient-to-br from-purple-600 to-indigo-700 rounded-xl flex items-center justify-center hover:from-purple-700 hover:to-indigo-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-110"
+                >
+                  <span className="sr-only">Farcaster</span>
+                  <img
+                    src="/farcaster.png"
+                    alt="Farcaster"
+                    className="w-6 h-6"
+                  />
+                </a>
               </div>
             </div>
             <div>
