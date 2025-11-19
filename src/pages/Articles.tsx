@@ -48,37 +48,142 @@ interface Article {
   externalLink?: string;
 }
 
-const Articles = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const [activeTab, setActiveTab] = useState("all");
+export default function Articles() {
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeTab, setActiveTab] = useState("all");
+
+  // Helper function to render formatted content
+  const renderFormattedContent = (text: string) => {
+    // Check if it's a heading
+    if (text.startsWith("## ")) {
+      return <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">{text.replace("## ", "")}</h2>;
+    }
+    if (text.startsWith("### ")) {
+      return <h3 className="text-xl font-semibold text-gray-800 mt-6 mb-3">{text.replace("### ", "")}</h3>;
+    }
+    
+    // Check if it's a bullet point
+    if (text.startsWith("• ")) {
+      const content = text.replace("• ", "");
+      // Parse bold text
+      const parts = content.split(/(\*\*.*?\*\*)/g);
+      return (
+        <li className="ml-6 mb-2">
+          {parts.map((part, i) => {
+            if (part.startsWith("**") && part.endsWith("**")) {
+              return <strong key={i}>{part.slice(2, -2)}</strong>;
+            }
+            return <span key={i}>{part}</span>;
+          })}
+        </li>
+      );
+    }
+    
+    // Check if it's a sub-bullet
+    if (text.startsWith("  ○ ")) {
+      const content = text.replace("  ○ ", "");
+      const parts = content.split(/(\*\*.*?\*\*)/g);
+      return (
+        <li className="ml-12 mb-2 list-none">
+          <span className="mr-2">○</span>
+          {parts.map((part, i) => {
+            if (part.startsWith("**") && part.endsWith("**")) {
+              return <strong key={i}>{part.slice(2, -2)}</strong>;
+            }
+            return <span key={i}>{part}</span>;
+          })}
+        </li>
+      );
+    }
+    
+    // Regular paragraph with bold text support
+    const parts = text.split(/(\*\*.*?\*\*)/g);
+    return (
+      <p className="leading-relaxed mb-4">
+        {parts.map((part, i) => {
+          if (part.startsWith("**") && part.endsWith("**")) {
+            return <strong key={i}>{part.slice(2, -2)}</strong>;
+          }
+          return <span key={i}>{part}</span>;
+        })}
+      </p>
+    );
+  };
 
   const articles: Article[] = [
     // Articles
     {
       id: "1",
-      title: "Nepal learned the hard way that the medium is the message",
+      title: "Arunachal Pradesh: The \"Green Wealth\" Capital of India",
       excerpt:
-        "McLuhan's foundational assertion that \"the medium is the message\" finds its most dramatic validation in Nepal's recent crisis.",
-      author: "Prem Taba",
-      date: "10 Sept 2025",
-      category: "leadership",
-      readTime: "10 min read",
+        "As the global economy pivots toward sustainability, Carbon Credits have evolved from a buzzword into a tangible currency. For Arunachal Pradesh—the 'lungs of India' with ~80% forest cover—this presents a unique economic opportunity.",
+      author: "Sahil Malik",
+      date: "19 November 2025",
+      category: "environment",
+      readTime: "8 min read",
       image:
-        "https://images.pexels.com/photos/2818118/pexels-photo-2818118.jpeg?_gl=1*iayytg*_ga*MTQ3MzU0MjI1LjE3NTc1OTQ1Njk.*_ga_8JE65Q40S6*czE3NTc1OTQ1NjgkbzEkZzEkdDE3NTc1OTQ2MzMkajU5JGwwJGgw",
-      views: "2.4k",
-      likes: "156",
+        "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&q=80",
+      views: "1.2k",
+      likes: "78",
       type: "article",
       featured: true,
-      externalLink: "https://arunachaltimes.in/index.php/2025/09/10/nepal-learned-the-hard-way-that-the-medium-is-the-message/",
       content: [
-        "The violent upheaval that engulfed Nepal on Monday, resulting in 19 deaths and the resignation of home minister Ramesh Lekhak, offers a compelling case study in the complex relationship between social media, governance, and public order in South Asian democracies.",
-        "The decision to ban TikTok and impose restrictions on other social media platforms represents a critical juncture in Nepal's digital governance journey. While the immediate trigger was the spread of inflammatory content that allegedly contributed to the violence, the underlying issues run much deeper.",
-        "Social media platforms have become the primary source of information and political discourse for millions of young Nepalis. The ban raises fundamental questions about digital rights, freedom of expression, and the state's role in regulating online spaces in democratic societies.",
-        "The economic implications of such bans cannot be ignored. Thousands of content creators, digital marketers, and small businesses that rely on these platforms for their livelihoods face immediate uncertainty. The ripple effects extend beyond individual users to the broader digital economy.",
-        "For neighboring countries in South Asia, Nepal's experience serves as both a cautionary tale and a learning opportunity. The challenge lies in finding the right balance between maintaining public order and preserving the democratic values that underpin free societies.",
-        "The path forward requires nuanced policy-making that addresses legitimate security concerns while protecting fundamental rights. This includes investing in digital literacy, strengthening fact-checking mechanisms, and developing more sophisticated approaches to content moderation.",
+        "A carbon credit acts as a tradable certificate representing the removal of one tonne of carbon dioxide from the atmosphere. However, for the local farmer, the true magic lies in 'stacking revenue': earning money from the physical harvest (crops) and the invisible harvest (carbon credits) from the same land.",
+        "## 1. Bamboo: The 'Green Gold' Double Engine",
+        "Bamboo is Arunachal's most potent asset. Unlike traditional timber, it is a grass that matures in 3-5 years and sequesters carbon up to 40% faster than many hardwood trees.",
+        "### The Dual Income Stream",
+        "• **Income Source 1 (The Crop):** Farmers can sell Bamboo Shoots (tenga) as high-value superfoods in domestic and export markets. Simultaneously, mature poles are sold to local industries for engineered lumber (flooring, beams), furniture, or ethanol production. Even the waste from processing can be converted into incense sticks (agarbatti).",
+        "• **Income Source 2 (The Carbon Credit):** While the bamboo grows, it captures carbon. By registering these plantations under voluntary standards (like Verra), farmers earn carbon credits. Additionally, converting bamboo waste into Biochar (a stable form of charcoal) creates premium 'removal credits' that sell for high prices globally.",
+        "### Accelerating the National Bamboo Mission (NBM)",
+        "This model directly supports the Centre's Restructured National Bamboo Mission (NBM), which focuses heavily on the North East.",
+        "• **Meeting NBM Goals:** The NBM aims to increase the area under bamboo in non-forest lands to supplement farm income. Carbon credit projects incentivize farmers to plant bamboo on degraded wastelands, directly fulfilling this mandate.",
+        "• **Subsidies & Scale:** The NBM provides financial assistance for planting material and nurseries. Carbon developers can leverage these existing subsidies to lower project costs, while the NBM benefits from the rigorous monitoring and data collection that carbon projects require.",
+        "• **Value Chain Creation:** The NBM pushes for 'complete value chain' development. Carbon revenue provides the capital needed to build the processing units (for biochar or ethanol) that the NBM advocates for.",
+        "## 2. Tea Gardens: Specialty Brews & Eco-Tourism",
+        "Tea estates are often viewed solely as agricultural assets, but in the carbon economy, they are 'Agro-Forestry' hubs.",
+        "### The Dual Income Stream",
+        "• **Income Source 1 (The Crop & Services):**",
+        "  ○ **Artisanal Exports:** Arunachal is home to rare varieties like Singpho 'Phalap' (Smoked Tea). These artisanal teas command massive premiums in international markets compared to standard CTC tea.",
+        "  ○ **Tea Tourism:** Estates in Namsai or Changlang can convert colonial bungalows into homestays. Tourists pay to stay within the garden, pluck leaves, and experience tribal culture—turning a farm into a hospitality business.",
+        "  ○ **Intercropping:** Farmers can plant Black Pepper or Areca Nut alongside tea bushes, ensuring a secondary cash crop from the same plot.",
+        "• **Income Source 2 (The Carbon Credit):**",
+        "  ○ **Soil Carbon:** By shifting to regenerative agriculture (reducing chemicals, using mulch), estates increase soil organic carbon, earning credits through platforms like Boomitra.",
+        "  ○ **Shade Trees:** Tea is grown under shade trees. These trees sequester 'standing carbon,' allowing estates to monetize the trees annually without ever cutting them down.",
+        "## 3. Hydropower: The Proven Model",
+        "While large dams remain debated, Small Hydro Projects (SHP) have already proven the concept of carbon monetization.",
+        "• **The Success Story:** The 3 MW Sumbachu Small Hydro Project (Zemithang, Tawang) became the first in the state to earn transferable carbon credits, generating over 6,500 credits (approx. ₹25 Lakhs) in 2023.",
+        "• **Community Benefit:** These projects provide reliable off-grid electricity to remote villages, powering the very processing units needed for the bamboo and tea industries mentioned above.",
+        "## Conclusion: The 'Stacking' Model",
+        "The future of Arunachal Pradesh's economy isn't about choosing between development and conservation—it is about monetizing both. By aligning with national policies like the National Bamboo Mission and adopting a 'revenue stacking' approach, the state can ensure that a single plot of land produces food, fuel, tourism, and carbon wealth simultaneously.",
+      ],
+    },
+    {
+      id: "1a",
+      title: "Nepal learned the hard way that the medium is the message",
+      excerpt:
+        "The violent upheaval that engulfed Nepal offers a compelling case study for understanding Marshall McLuhan's prophetic insights about media, technology, and social transformation.",
+      author: "Prem Tamba",
+      date: "10 Sept 2025",
+      category: "politics",
+      readTime: "10 min read",
+      image:
+        "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=800&q=80",
+      views: "2.5k",
+      likes: "156",
+      type: "article",
+      featured: false,
+      content: [
+        "The violent upheaval that engulfed Nepal on Monday, resulting in 19 deaths and the resignation of home minister Ramesh Lekhak, offers a compelling case study for understanding media theorist Marshall McLuhan's prophetic insights about media, technology, and social transformation. While the immediate trigger was the government's ban on 26 unregistered social media platforms including Facebook, WhatsApp, Instagram, and YouTube, a McLuhanesque analysis reveals how digital media has fundamentally altered the relationship between citizens and state power.",
+        "McLuhan's foundational assertion that 'the medium is the message' finds its most dramatic validation in Nepal's recent crisis. The protests were not merely about access to information or entertainment content, but about the sudden amputation of what McLuhan would recognize as extensions of the human nervous system. For Nepal's Gen Z population, these platforms had become prosthetic extensions of memory, communication, and economic activity.",
+        "This technological amputation, however, cannot be understood solely through the lens of digital rights activism. In the weeks preceding the ban, Nepali youths had been increasingly vocal on social media about systemic corruption, using hashtags like #nepokid and #nepobaby to highlight how children of politicians and celebrities are securing jobs and benefits while ordinary citizens struggle for basic necessities. The digital platforms served not merely as communication tools but as pressure release valves for a society frustrated with governmental incompetence and graft. When the government removed these outlets, accumulated social pressure erupted with unprecedented violence, with protesters adopting the slogan 'Youths against corruption' – revealing that the social media ban had become a trigger for deeper grievances about Nepal's endemic corruption and economic inequality.",
+        "Building on this foundation of digital activism against corruption, McLuhan's concept of the 'global village' takes on particular significance in understanding how local Nepali grievances intersect with global digital infrastructure. The banned platforms had created what we might call 'glocal spaces' – environments where local economic actors could participate in global digital economies while maintaining cultural specificity. Content creators, influencers, and small business owners had developed hybrid identities that were simultaneously deeply Nepali and thoroughly globalized. The government's attempt to severe these connections revealed a profound misunderstanding of how digital media had restructured Nepal's social fabric.",
+        "Given this context of deep-seated frustration with nepotism and corruption, the theoretical framework of 'hot' versus 'cool' media provides additional analytical leverage. McLuhan categorized media based on their participatory requirements – hot media like television and radio demand minimal user engagement, while cool media like telephones and, by extension, social media platforms require high user participation. The Nepali government's assumption that it could substitute interactive, participatory digital platforms with traditional broadcast-style government communication channels demonstrates a catastrophic misreading of media ecology. Cool media create what McLuhan called 'tribal' patterns of engagement -intensive, participatory, and emotionally charged.",
+        "This governmental miscalculation became evident in both the speed of their capitulation – lifting the ban within days of the deadly protests – and home minister Lekhak's resignation 'on moral grounds' following the death of 19 protesters, revealing the government's complete underestimation of how deeply these platforms had become integrated into Nepali social and economic life.",
+        "The 'Youths against corruption' slogan that emerged during the protests crystallizes how anti-corruption sentiment converged with digital rights activism. The social media platforms provided not just communication infrastructure but cognitive and emotional scaffolding for processing and expressing political discontent. When this infrastructure was removed, the accumulated frustrations with governmental corruption and incompetence erupted into the streets.",
+        "Nepal's digital uprising ultimately validates McLuhan's most prescient observation: 'We shape our tools, and thereafter they shape us.' The Nepali government discovered, at the cost of 19 lives, that social media platforms have transcended their instrumental function to become fundamental extensions of human social and economic life. The attempt to regulate these platforms as external objects rather than internal extensions precipitated a social trauma that found expression through physical violence.",
+        "This case study suggests that future media regulation must grapple seriously with McLuhan's insights about technological extension and social transformation. In our hyperconnected age, the medium truly has become the message, and attempts to control the medium without understanding its role as human extension will likely generate increasingly violent forms of social resistance. The Nepal crisis offers a sobering preview of what happens when governments attempt to disconnect citizens from the digital extensions of their social and economic lives.",
       ],
     },
     {
@@ -279,9 +384,9 @@ const Articles = () => {
 
   const filteredArticles = articles.filter((article) => {
     const matchesSearch =
-      article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      article.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      article.author.toLowerCase().includes(searchTerm.toLowerCase());
+      article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      article.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      article.author.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory =
       selectedCategory === "all" || article.category === selectedCategory;
     const matchesTab = activeTab === "all" || article.type === activeTab;
@@ -652,11 +757,11 @@ const Articles = () => {
                     {selectedArticle.excerpt}
                   </p>
 
-                  <div className="space-y-4 text-gray-700">
+                  <div className="space-y-2 text-gray-700">
                     {selectedArticle.content.map((paragraph, index) => (
-                      <p key={index} className="leading-relaxed">
-                        {paragraph}
-                      </p>
+                      <div key={index}>
+                        {renderFormattedContent(paragraph)}
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -724,6 +829,4 @@ const Articles = () => {
       </Dialog>
     </div>
   );
-};
-
-export default Articles;
+}
